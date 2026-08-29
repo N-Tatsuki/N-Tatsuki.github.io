@@ -434,3 +434,93 @@ a{ color:var(--navy-700); }
     grid-template-columns:1fr;
   }
 }
+
+/* =========================================================
+   2026-08-30 update 2: compact project cards / publication abstract
+   ========================================================= */
+
+/* 研究テーマの説明は一つの連続した段落として、利用可能幅いっぱいに表示 */
+.theme__desc{
+  max-width:none;
+}
+
+/* 論文Abstractのアコーディオン */
+.pub__details{
+  margin:0;
+}
+.pub__summary{
+  cursor:pointer;
+  list-style-position:outside;
+}
+.pub__summary:hover{
+  color:var(--navy-700);
+}
+.pub__abstract{
+  margin:10px 0 4px;
+  padding:14px 16px;
+  background:var(--navy-050);
+  border-left:3px solid var(--brass);
+  border-radius:3px;
+}
+.pub__abstract-label{
+  display:block;
+  margin-bottom:6px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--navy-400);
+}
+.pub__abstract p{
+  margin:0;
+  font-size:13px;
+  line-height:1.75;
+  color:var(--ink-muted);
+}
+
+/* プロジェクトカード：画像を左、内容を右に置く */
+.card{
+  display:grid;
+  grid-template-columns:190px minmax(0,1fr);
+  align-items:stretch;
+}
+.card__figure{
+  aspect-ratio:auto;
+  min-height:180px;
+  border-right:1px solid var(--rule);
+}
+.card__body{
+  min-width:0;
+}
+.card__meta{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:6px;
+}
+.card__year{
+  margin-bottom:0;
+}
+.card__status{
+  display:inline-block;
+  padding:2px 8px;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  font-size:10.5px;
+  font-weight:600;
+  line-height:1.5;
+  color:var(--ink-muted);
+  background:#fff;
+}
+
+@media (max-width:639px){
+  .card{
+    grid-template-columns:1fr;
+  }
+  .card__figure{
+    min-height:0;
+    aspect-ratio:16/9;
+    border-right:0;
+    border-bottom:1px solid var(--rule);
+  }
+}

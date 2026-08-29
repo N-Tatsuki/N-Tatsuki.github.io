@@ -78,7 +78,6 @@
     <section class="sec" id="contact">
       <h2 class="sec__title"><span class="sec__eyebrow">Links</span>外部リンク</h2>
       <ul class="links" id="linkList"></ul>
-      <p class="contact__mail">Email: <span data-bind="email"></span></p>
     </section>
   </main>
 </div>
@@ -102,7 +101,6 @@ window.SITE_DATA = {
     nameEn: "Tatsuki Nakatani",
     affiliation: "東京科学大学 工学院 機械系\nエンジニアリングデザインコース 博士後期課程",
     lead: "研究業績や活動歴を整理する個人HPです。",
-    email: "your-name [at] example.ac.jp"
   },
 
   /* ------------------------------------------------------------------
@@ -161,6 +159,7 @@ window.SITE_DATA = {
       title: "Brazing of carbon/carbon composite beams using gold filler with tungsten trioxide and tungsten carbide coatings",
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
       venue: "Carbon, 121264（2026年1月）査読有り・筆頭著者 / Impact Factor 12.7（2026年8月30日時点）",
+      abstract: "Carbon/Carbon (C/C) composites are expected to be used as space components due to their excellent specific strength and high heat resistance. This study investigates a reliable brazing technique for C/C composites, aimed at their application as beam members in lunar geodesic dome structures. To improve the wettability of pure gold filler metal and prevent its excessive penetration, the end surfaces of the carbon fibers and the graphite matrix were coated with tungsten trioxide and tungsten carbide. The coating process successfully formed a protective layer on both the carbon fibers and the matrix, facilitating effective gold wetting. In three-point bending tests of the brazed specimens, the average maximum flexural stress reached 48.5 MPa. The fracture occurred as a tensile failure accompanied by interlaminar shear. These results indicate that the joint strength was greater than the strength of the C/C composite base material. Microstructural analyses confirmed that tungsten coatings formed around the fibers. When the C/C composite was placed with an oblique carbon fiber orientation to the joining surface for use as a beam material, the gold filler penetrated along the carbon fiber at an oblique angle. Furthermore, the alternating fiber orientation of the composite contributed to stress redistribution during loading, enhancing joint strength. These findings demonstrate that tungsten-based coatings and fiber architecture are critical to improving the mechanical performance of brazed C/C composite joints.",
       type: "journal",
       themes: ["materials"],
       topic: "brazing",
@@ -354,7 +353,7 @@ window.SITE_DATA = {
         "小型宇宙機の技術実証を行うCanSatプロジェクトに授業の一環として取り組み、その後チームで自主的に国際大会ARLISSへ出場しました。月面クレータ内での水資源運搬を想定し、パイプラインを自動敷設するシステムを開発して技術実証を行い、Best Mission Award 1st Place を受賞しました。要求の異なる複数の設計要件を整理し、設計から加工までを自チームで完結させる過程で、技術面とプロジェクトマネジメントの両面を実践的に学びました。",
       image: "",
       links: [
-        { label: "ARLISS（UNISEC）", url: "https://unisec.jp/activities/arliss" }
+        { label: "ARLISS（UNISEC）", url: "https://unisec.jp/archives/10330" }
       ]
     },
     {
@@ -369,7 +368,8 @@ window.SITE_DATA = {
       ]
     },
     {
-      year: "2022 —",
+      year: "2022",
+      status: "終了",
       title: "ASE-Lab／宇宙建築学ゼミ 主宰",
       description:
         "大学院での研究に関わる知識を深めるとともに、宇宙建築分野の裾野を広げることを目的として、オンラインで「宇宙建築学ゼミ」を主宰しました。全国から集まった学生とともに、宇宙用材料や接合法といった材料工学の話題から月面都市の形成構想まで、幅広いテーマで継続的にゼミを運営しました。",
@@ -491,7 +491,6 @@ window.SITE_DATA = {
       nameEn: P.nameEn,
       affiliation: P.affiliation,
       lead: P.lead,
-      email: P.email,
       year: new Date().getFullYear()
     };
     Object.keys(map).forEach(function (key) {
@@ -524,10 +523,14 @@ window.SITE_DATA = {
     var link = p.url
       ? '<a class="pub__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">リンクを開く</a>'
       : "";
+    var titleBlock = p.abstract
+      ? '<details class="pub__details"><summary class="pub__title pub__summary">' + esc(p.title) + '</summary>' +
+        '<div class="pub__abstract"><span class="pub__abstract-label">Abstract</span><p>' + esc(p.abstract) + '</p></div></details>'
+      : '<p class="pub__title">' + esc(p.title) + '</p>';
     return '<li class="pub">' +
       '<span class="pub__year">' + esc(p.period || p.year) + "</span>" +
       "<div>" +
-        '<p class="pub__title">' + esc(p.title) + "</p>" +
+        titleBlock +
         (lines ? '<p class="pub__meta">' + lines + "</p>" : "") +
         link +
       "</div></li>";
@@ -607,7 +610,8 @@ window.SITE_DATA = {
       return '<article class="card">' +
         '<figure class="card__figure">' + figure + "</figure>" +
         '<div class="card__body">' +
-          '<span class="card__year">' + esc(pr.year) + "</span>" +
+          '<div class="card__meta"><span class="card__year">' + esc(pr.year) + "</span>" +
+            (pr.status ? '<span class="card__status">' + esc(pr.status) + '</span>' : '') + '</div>' +
           '<h3 class="card__title">' + esc(pr.title) + "</h3>" +
           '<details class="card__details">' +
             '<summary>説明を見る</summary>' +
