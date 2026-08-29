@@ -109,7 +109,7 @@ a{ color:var(--navy-700); }
 /* =========================================================
    冒頭
    ========================================================= */
-.hero{ padding:64px 0 44px; border-bottom:1px solid var(--rule); }
+.hero{ padding:64px 0 48px; border-bottom:1px solid var(--rule); }
 .hero__eyebrow{
   margin:0 0 20px;
   font-size:11px; letter-spacing:.24em; text-transform:uppercase;
@@ -132,48 +132,6 @@ a{ color:var(--navy-700); }
   font-size:15.5px; color:var(--ink-muted); max-width:52ch;
 }
 
-
-/* =========================================================
-   目次
-   ========================================================= */
-.toc{
-  margin-top:44px;
-  border:1px solid var(--rule);
-  border-left:3px solid var(--brass);
-  border-radius:0 5px 5px 0;
-  background:#fff;
-  padding:22px 24px 24px;
-}
-.toc__label{
-  margin:0 0 14px;
-  font-size:11px; font-weight:700; letter-spacing:.24em;
-  text-transform:uppercase; color:var(--brass);
-}
-.toc__list{
-  list-style:none; margin:0; padding:0;
-  counter-reset:toc;
-}
-.toc__item{ counter-increment:toc; border-top:1px solid var(--navy-050); }
-.toc__item:first-child{ border-top:0; }
-.toc__item a{
-  display:flex; align-items:baseline; gap:12px;
-  padding:11px 4px;
-  text-decoration:none; color:var(--ink);
-  transition:color .2s, background .2s;
-}
-.toc__item a::before{
-  content:counter(toc,decimal-leading-zero);
-  flex:0 0 auto;
-  font-size:11.5px; font-weight:700; color:var(--navy-400);
-  font-variant-numeric:tabular-nums;
-}
-.toc__ja{ font-size:15px; font-weight:500; }
-.toc__en{
-  font-size:10.5px; letter-spacing:.18em; text-transform:uppercase;
-  color:var(--ink-muted); margin-left:auto;
-}
-.toc__item a:hover{ color:var(--navy-700); background:var(--navy-050); }
-.toc__item a:hover::before{ color:var(--brass); }
 
 /* =========================================================
    セクション共通
@@ -381,7 +339,6 @@ a{ color:var(--navy-700); }
 
   .main{ padding:0 64px 140px; margin:0; max-width:calc(var(--max-w) + 128px); }
   .hero{ padding-top:96px; }
-  .toc{ padding:26px 30px 28px; }
   .pub{ grid-template-columns:76px 1fr; }
   .cards{ grid-template-columns:1fr 1fr; }
   .job{ grid-template-columns:180px 1fr; gap:0 24px; }

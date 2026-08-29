@@ -62,18 +62,6 @@
     }).join("");
   }
 
-  /* ---------- 目次 ---------- */
-  function renderToc() {
-    var list = byId("tocList");
-    if (!list) return;
-    list.innerHTML = SECTIONS.map(function (s) {
-      return '<li class="toc__item"><a href="#' + s.id + '">' +
-        '<span class="toc__ja">' + s.ja + "</span>" +
-        '<span class="toc__en">' + s.en + "</span>" +
-      "</a></li>";
-    }).join("");
-  }
-
   /* ---------- 業績1件分 ---------- */
   function pubItem(p) {
     var lines = [p.authors, p.venue, p.program, p.role, p.number]
@@ -212,7 +200,6 @@
 
   fillBindings();
   renderNav();
-  renderToc();
   renderThemes();
   renderProjects();
   renderTrack("educationList", D.education);
