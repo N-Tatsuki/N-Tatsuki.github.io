@@ -501,17 +501,6 @@ a{ color:var(--navy-700); }
 .card__year{
   margin-bottom:0;
 }
-.card__status{
-  display:inline-block;
-  padding:2px 8px;
-  border:1px solid var(--rule);
-  border-radius:999px;
-  font-size:10.5px;
-  font-weight:600;
-  line-height:1.5;
-  color:var(--ink-muted);
-  background:#fff;
-}
 
 @media (max-width:639px){
   .card{
@@ -523,4 +512,24 @@ a{ color:var(--navy-700); }
     border-right:0;
     border-bottom:1px solid var(--rule);
   }
+}
+
+/* 業績の属性バッジ */
+.pub__badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:7px;
+}
+.pub__badge{
+  display:inline-block;
+  padding:2px 8px;
+  border:1px solid var(--brass-soft);
+  border-radius:999px;
+  background:#fff;
+  color:var(--navy-700);
+  font-size:10.5px;
+  font-weight:700;
+  line-height:1.55;
+  letter-spacing:.03em;
 }

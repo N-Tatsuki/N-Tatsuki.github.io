@@ -110,34 +110,27 @@ window.SITE_DATA = {
      ------------------------------------------------------------------ */
   themes: [
     {
-      id: "materials",
-      title: "複合材料のろう付・金属3D積層造形",
-      description: "",
-      subthemes: [
-        {
-          id: "metal-am",
-          period: "学士課程",
-          title: "金属3D積層造形",
-          description: ""
-        },
-        {
-          id: "brazing",
-          period: "修士～博士課程",
-          title: "複合材料のろう付",
-          description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。"
-        }
-      ]
+      id: "brazing",
+      period: "修士～博士課程",
+      title: "複合材料の接合に関する研究",
+      description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。"
+    },
+    {
+      id: "metal-am",
+      period: "学士課程",
+      title: "金属3D積層造形に関する研究",
+      description: "マシニングセンタによる摩擦肉盛法と3軸のＮＣ自動溶接機によるＷＡＡＭを組み合わせた三次元積層造形の研究を行いました。"
     },
     {
       id: "space-policy",
       period: "2021 〜 現在",
-      title: "宇宙政策",
+      title: "宇宙政策に関する研究",
       description: "日本の宇宙政策に関する調査研究業務を行っています。企業からの委託や個人研究を通して、宇宙政策の在り方について理解を深めています。大学院での研究成果の産業利用に向けて視野を広げる意図もあります。"
     },
     {
       id: "inquiry",
       period: "2023 〜 現在",
-      title: "学士課程の教養教育プロセス",
+      title: "学士課程の教養教育プロセスに関する研究",
       description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）業務を担当しています。授業改善や教材開発を行っています。"
     }
   ],
@@ -149,50 +142,50 @@ window.SITE_DATA = {
        "award" 受賞 / "grant" 競争的資金等の研究課題 / "misc" その他
 
      themes は配列です。複数テーマにまたがる業績は
-     ["materials","space-policy"] のように並べると両方に表示されます。
+     ["brazing","space-policy"] のように並べると両方に表示されます。
      ------------------------------------------------------------------ */
   publications: [
 
-    /* ---- 複合材料のろう付・金属3D積層造形 ---- */
+    /* ---- 複合材料の接合／金属3D積層造形 ---- */
     {
       year: 2026,
       title: "Brazing of carbon/carbon composite beams using gold filler with tungsten trioxide and tungsten carbide coatings",
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
-      venue: "Carbon, 121264（2026年1月）査読有り・筆頭著者 / Impact Factor 12.7（2026年8月30日時点）",
+      venue: "Carbon, 121264（2026年1月） / Impact Factor 12.7（2026年8月30日時点）",
+      badges: ["主著", "査読あり"],
       abstract: "Carbon/Carbon (C/C) composites are expected to be used as space components due to their excellent specific strength and high heat resistance. This study investigates a reliable brazing technique for C/C composites, aimed at their application as beam members in lunar geodesic dome structures. To improve the wettability of pure gold filler metal and prevent its excessive penetration, the end surfaces of the carbon fibers and the graphite matrix were coated with tungsten trioxide and tungsten carbide. The coating process successfully formed a protective layer on both the carbon fibers and the matrix, facilitating effective gold wetting. In three-point bending tests of the brazed specimens, the average maximum flexural stress reached 48.5 MPa. The fracture occurred as a tensile failure accompanied by interlaminar shear. These results indicate that the joint strength was greater than the strength of the C/C composite base material. Microstructural analyses confirmed that tungsten coatings formed around the fibers. When the C/C composite was placed with an oblique carbon fiber orientation to the joining surface for use as a beam material, the gold filler penetrated along the carbon fiber at an oblique angle. Furthermore, the alternating fiber orientation of the composite contributed to stress redistribution during loading, enhancing joint strength. These findings demonstrate that tungsten-based coatings and fiber architecture are critical to improving the mechanical performance of brazed C/C composite joints.",
       type: "journal",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: "https://doi.org/10.1016/j.carbon.2026.121264"
     },
     {
       year: 2025,
       title: "Brazing of C/C Composites using a developed Au-Ni-W Filler",
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
-      venue: "Brazing, High Temperature Brazing and Diffusion Bonding (LÖT 2025), 399, pp.37-44（2025年6月）筆頭著者",
+      venue: "Brazing, High Temperature Brazing and Diffusion Bonding (LÖT 2025), 399, pp.37-44（2025年6月）",
+      badges: ["主著"],
       type: "international",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: "https://doi.org/10.53192/LOET20250037"
     },
     {
       year: 2022,
       title: "ワイヤ＋アーク放電を用いたアディティブ・マニュファクチャリング技術によるマルチマテリアル積層法",
       authors: "永松秀朗, 宇野澤茜, 中谷樹, 河端征大, 中島健太郎, 笹原弘之",
-      venue: "第19回国際工作機械技術者会議, B-2, pp.14-15（2022年11月）招待・ポスター発表",
+      venue: "第19回国際工作機械技術者会議, B-2, pp.14-15（2022年11月）ポスター発表",
+      badges: ["招待あり"],
       type: "international",
-      themes: ["materials"],
-      topic: "metal-am",
+      themes: ["metal-am"],
       url: ""
     },
     {
       year: 2026,
       title: "C/C複合材料のAu-Ni-Wろう付",
       authors: "中谷樹, 山﨑敬久",
-      venue: "溶接学会 第132回界面接合研究委員会（2026年6月）招待講演",
+      venue: "溶接学会 第132回界面接合研究委員会（2026年6月）",
+      badges: ["主著", "招待あり"],
       type: "domestic",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: ""
     },
     {
@@ -200,9 +193,9 @@ window.SITE_DATA = {
       title: "直交繊維配向C/C複合材料梁のAu-Ni-Wろう付",
       authors: "中谷 樹, 山﨑 敬久",
       venue: "溶接学会 2024年度秋季全国大会, 第115集, pp.358-359（2024年9月）",
+      badges: ["主著"],
       type: "domestic",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: "https://doi.org/10.14920/jwstaikai.2024f.0_358"
     },
     {
@@ -210,9 +203,9 @@ window.SITE_DATA = {
       title: "摩擦肉盛法とWAAM法の組み合わせによる鉄鋼基材へのアルミニウム合金の積層",
       authors: "中谷樹, 永松秀朗, 笹原弘之",
       venue: "第30回 学生会員卒業研究発表講演会, I26（2023年3月）",
+      badges: ["主著"],
       type: "domestic",
-      themes: ["materials"],
-      topic: "metal-am",
+      themes: ["metal-am"],
       url: ""
     },
     {
@@ -221,24 +214,21 @@ window.SITE_DATA = {
       program: "石福金属興業株式会社 貴金属研究開発助成金",
       role: "研究代表者",
       type: "grant",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: "https://www.ishifuku-kinzoku.co.jp/topics/2025/grant.html"
     },
     {
       period: "2025 —",
       title: "東京工業大学つばめ博士学生奨学金（特別奨学金）",
       type: "award",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: ""
     },
     {
       year: 2025,
       title: "日本学生支援機構 第一種奨学金 特に優れた業績による返還免除（修士課程）",
       type: "award",
-      themes: ["materials"],
-      topic: "brazing",
+      themes: ["brazing"],
       url: ""
     },
 
@@ -265,7 +255,8 @@ window.SITE_DATA = {
       year: 2024,
       title: "月面核融合発電システムに関する国際動向と論点整理",
       authors: "中谷 樹, 有吉 志満",
-      venue: "第68回 宇宙科学技術連合講演会, 3L04（2024年11月）筆頭発表",
+      venue: "第68回 宇宙科学技術連合講演会, 3L04（2024年11月）",
+      badges: ["主著"],
       type: "domestic",
       themes: ["space-policy"],
       url: "https://jxiv.jst.go.jp/index.php/jxiv/preprint/view/1772"
@@ -301,7 +292,8 @@ window.SITE_DATA = {
       year: 2024,
       title: "宇宙での核融合エネルギー利用に関する国際動向と論点整理",
       authors: "中谷樹, 有吉志満",
-      venue: "第56回ニュースペース研究会（2024年8月）招待講演",
+      venue: "第56回ニュースペース研究会（2024年8月）",
+      badges: ["主著", "招待あり"],
       type: "domestic",
       themes: ["space-policy"],
       url: "https://ngsl.or.jp/news/meeting-56/"
@@ -369,8 +361,7 @@ window.SITE_DATA = {
     },
     {
       year: "2022",
-      status: "終了",
-      title: "ASE-Lab／宇宙建築学ゼミ 主宰",
+      title: "ASE-Lab／宇宙建築学ゼミ",
       description:
         "大学院での研究に関わる知識を深めるとともに、宇宙建築分野の裾野を広げることを目的として、オンラインで「宇宙建築学ゼミ」を主宰しました。全国から集まった学生とともに、宇宙用材料や接合法といった材料工学の話題から月面都市の形成構想まで、幅広いテーマで継続的にゼミを運営しました。",
       image: "",
@@ -456,9 +447,10 @@ window.SITE_DATA = {
     {
       id: "research", ja: "研究テーマ", en: "Research",
       children: [
-        { id: "theme-materials", ja: "複合材料のろう付・金属3D積層造形" },
-        { id: "theme-space-policy", ja: "宇宙政策" },
-        { id: "theme-inquiry", ja: "学士課程の教養教育プロセス" }
+        { id: "theme-brazing", ja: "複合材料の接合に関する研究" },
+        { id: "theme-metal-am", ja: "金属3D積層造形に関する研究" },
+        { id: "theme-space-policy", ja: "宇宙政策に関する研究" },
+        { id: "theme-inquiry", ja: "学士課程の教養教育プロセスに関する研究" }
       ]
     },
     { id: "projects",   ja: "プロジェクト",  en: "Projects" },
@@ -523,6 +515,11 @@ window.SITE_DATA = {
     var link = p.url
       ? '<a class="pub__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">リンクを開く</a>'
       : "";
+    var badges = Array.isArray(p.badges) && p.badges.length
+      ? '<div class="pub__badges">' + p.badges.map(function (b) {
+          return '<span class="pub__badge">' + esc(b) + '</span>';
+        }).join("") + '</div>'
+      : "";
     var titleBlock = p.abstract
       ? '<details class="pub__details"><summary class="pub__title pub__summary">' + esc(p.title) + '</summary>' +
         '<div class="pub__abstract"><span class="pub__abstract-label">Abstract</span><p>' + esc(p.abstract) + '</p></div></details>'
@@ -531,6 +528,7 @@ window.SITE_DATA = {
       '<span class="pub__year">' + esc(p.period || p.year) + "</span>" +
       "<div>" +
         titleBlock +
+        badges +
         (lines ? '<p class="pub__meta">' + lines + "</p>" : "") +
         link +
       "</div></li>";
@@ -567,20 +565,7 @@ window.SITE_DATA = {
         return Array.isArray(p.themes) && p.themes.indexOf(t.id) !== -1;
       });
 
-      var body = "";
-      if (Array.isArray(t.subthemes) && t.subthemes.length) {
-        body = '<div class="subthemes">' + t.subthemes.map(function (st) {
-          var topicItems = mine.filter(function (p) { return p.topic === st.id; });
-          return '<section class="subtheme" id="topic-' + esc(st.id) + '">' +
-            (st.period ? '<span class="theme__period">' + esc(st.period) + "</span>" : "") +
-            '<h4 class="subtheme__title">' + esc(st.title) + "</h4>" +
-            (st.description ? '<p class="theme__desc">' + esc(st.description) + "</p>" : "") +
-            renderPublicationGroups(topicItems) +
-          "</section>";
-        }).join("") + "</div>";
-      } else {
-        body = renderPublicationGroups(mine);
-      }
+      var body = renderPublicationGroups(mine);
 
       return '<article class="theme" id="theme-' + esc(t.id) + '">' +
         (t.period ? '<span class="theme__period">' + esc(t.period) + "</span>" : "") +
@@ -610,8 +595,7 @@ window.SITE_DATA = {
       return '<article class="card">' +
         '<figure class="card__figure">' + figure + "</figure>" +
         '<div class="card__body">' +
-          '<div class="card__meta"><span class="card__year">' + esc(pr.year) + "</span>" +
-            (pr.status ? '<span class="card__status">' + esc(pr.status) + '</span>' : '') + '</div>' +
+          '<div class="card__meta"><span class="card__year">' + esc(pr.year) + "</span></div>" +
           '<h3 class="card__title">' + esc(pr.title) + "</h3>" +
           '<details class="card__details">' +
             '<summary>説明を見る</summary>' +
