@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>中谷 樹 | 東京科学大学 博士後期課程</title>
+<meta name="description" content="東京科学大学 博士後期課程。複合材料のろう付・金属3D積層造形、宇宙政策、探究活動支援に関する研究業績とプロジェクトを掲載しています。">
+
+<!-- OGP（SNSでリンクを共有したときの表示。URLと画像は公開後に書き換えてください） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="中谷 樹 | 東京科学大学 博士後期課程">
+<meta property="og:description" content="複合材料のろう付・金属3D積層造形、宇宙政策、探究活動支援。">
+<meta property="og:url" content="https://n-tatsuki.github.io/">
+<meta property="og:image" content="https://n-tatsuki.github.io/images/ogp.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<a class="skip" href="#main">本文へスキップ</a>
+
+<div class="shell">
+
+  <!-- ============ 左サイドバー（スマホでは上部の帯になります） ============ -->
+  <header class="rail">
+    <div class="rail__id">
+      <p class="rail__name" data-bind="nameJa">中谷 樹</p>
+      <p class="rail__name-en" data-bind="nameEn">Tatsuki Nakatani</p>
+      <p class="rail__affil" data-bind="affiliation"></p>
+    </div>
+
+    <!-- 項目は main.js が自動生成します -->
+    <nav class="rail__nav" id="railNav" aria-label="ページ内ナビゲーション"></nav>
+
+    <p class="rail__foot">&copy; <span data-bind="year"></span> Tatsuki Nakatani</p>
+  </header>
+
+  <!-- ============ 本文 ============ -->
+  <main class="main" id="main">
+
+    <!-- ---- 冒頭 ---- -->
+    <section class="hero">
+      <p class="hero__eyebrow">Doctoral Researcher / Materials Science</p>
+      <h1 class="hero__name">
+        <span class="hero__ja" data-bind="nameJa">中谷 樹</span>
+        <span class="hero__en" data-bind="nameEn">Tatsuki Nakatani</span>
+      </h1>
+      <p class="hero__lead" data-bind="lead"></p>
+    </section>
+
+    <!-- ---- 学歴 ---- -->
+    <section class="sec" id="education">
+      <h2 class="sec__title"><span class="sec__eyebrow">Education</span>学歴</h2>
+      <ol class="track" id="educationList"></ol>
+    </section>
+
+    <!-- ---- 研究テーマと業績 ---- -->
+    <section class="sec" id="research">
+      <h2 class="sec__title"><span class="sec__eyebrow">Research</span>研究テーマ</h2>
+      <p class="sec__note">各テーマの下に、関連する業績を種別ごとにまとめています。</p>
+      <div id="themes"></div>
+    </section>
+
+    <!-- ---- プロジェクト ---- -->
+    <section class="sec" id="projects">
+      <h2 class="sec__title"><span class="sec__eyebrow">Projects</span>プロジェクト</h2>
+      <div class="cards" id="projectList"></div>
+    </section>
+
+    <!-- ---- 職歴 ---- -->
+    <section class="sec" id="experience">
+      <h2 class="sec__title"><span class="sec__eyebrow">Experience</span>職歴</h2>
+      <ol class="track" id="experienceList"></ol>
+    </section>
+
+    <!-- ---- リンクと連絡先 ---- -->
+    <section class="sec" id="contact">
+      <h2 class="sec__title"><span class="sec__eyebrow">Links</span>外部リンク</h2>
+      <ul class="links" id="linkList"></ul>
+      <p class="contact__mail">Email: <span data-bind="email"></span></p>
+    </section>
+  </main>
+</div>
+
+<script>
+/* =====================================================================
+   サイトの中身はすべてこのファイルで管理します。
+   HTML や CSS を触らなくても、ここを書き換えれば表示が変わります。
+   文字列は "ダブルクォート" で囲み、各項目の末尾のカンマを消さないでください。
+
+   業績データは researchmap のエクスポート（2026/08/29 時点）を反映しています。
+   ===================================================================== */
+
+const SITE_DATA = {
+
+  /* ------------------------------------------------------------------
+     1. 基本情報
+     ------------------------------------------------------------------ */
+  profile: {
+    nameJa: "中谷 樹",
+    nameEn: "Tatsuki Nakatani",
+    affiliation: "東京科学大学 工学院 機械系\nエンジニアリングデザインコース 博士後期課程",
+    lead: "炭素繊維複合材料の接合技術を軸に、宇宙構造物の材料研究から宇宙政策の調査、探究活動の教育支援までを横断して取り組んでいます。",
+    email: "your-name [at] example.ac.jp"
+  },
+
+  /* ------------------------------------------------------------------
+     2. 研究テーマ
+     id は業績と紐づける識別子です。半角英数字で、変更しないでください。
+     description に各テーマの説明文を書きます。
+     ------------------------------------------------------------------ */
+  themes: [
+    {
+      id: "materials",
+      period: "学士 〜 博士",
+      title: "複合材料のろう付・金属3D積層造形",
+      description: "加筆修正予定です。"
+    },
+    {
+      id: "space-policy",
+      period: "2021 〜 現在",
+      title: "宇宙政策",
+      description: "加筆修正予定です。"
+    },
+    {
+      id: "inquiry",
+      period: "2023 〜 現在",
+      title: "探究活動支援",
+      description: "加筆修正予定です。"
+    }
+  ],
+
+  /* ------------------------------------------------------------------
+     3. 業績
+     type は次のいずれかを指定します（この順で表示されます）。
+       "journal" 論文 / "international" 国際会議 / "domestic" 国内会議・研究会
+       "award" 受賞 / "grant" 競争的資金等の研究課題 / "misc" その他
+
+     themes は配列です。複数テーマにまたがる業績は
+     ["materials","space-policy"] のように並べると両方に表示されます。
+     ------------------------------------------------------------------ */
+  publications: [
+
+    /* ---- 複合材料のろう付・金属3D積層造形 ---- */
+    {
+      year: 2026,
+      title: "Brazing of carbon/carbon composite beams using gold filler with tungsten trioxide and tungsten carbide coatings",
+      authors: "Tatsuki Nakatani, Takahisa Yamazaki",
+      venue: "Carbon, 121264（2026年1月）査読有り・筆頭著者",
+      type: "journal",
+      themes: ["materials"],
+      url: "https://doi.org/10.1016/j.carbon.2026.121264"
+    },
+    {
+      year: 2025,
+      title: "Brazing of C/C Composites using a developed Au-Ni-W Filler",
+      authors: "Tatsuki Nakatani, Takahisa Yamazaki",
+      venue: "Brazing, High Temperature Brazing and Diffusion Bonding (LÖT 2025), 399, pp.37-44（2025年6月）筆頭著者",
+      type: "international",
+      themes: ["materials"],
+      url: "https://doi.org/10.53192/LOET20250037"
+    },
+    {
+      year: 2022,
+      title: "ワイヤ＋アーク放電を用いたアディティブ・マニュファクチャリング技術によるマルチマテリアル積層法",
+      authors: "永松秀朗, 宇野澤茜, 中谷樹, 河端征大, 中島健太郎, 笹原弘之",
+      venue: "第19回国際工作機械技術者会議, B-2, pp.14-15（2022年11月）招待・ポスター発表",
+      type: "international",
+      themes: ["materials"],
+      url: ""
+    },
+    {
+      year: 2026,
+      title: "C/C複合材料のAu-Ni-Wろう付",
+      authors: "中谷樹, 山﨑敬久",
+      venue: "溶接学会 第132回界面接合研究委員会（2026年6月）招待講演",
+      type: "domestic",
+      themes: ["materials"],
+      url: ""
+    },
+    {
+      year: 2024,
+      title: "直交繊維配向C/C複合材料梁のAu-Ni-Wろう付",
+      authors: "中谷 樹, 山﨑 敬久",
+      venue: "溶接学会 2024年度秋季全国大会, 第115集, pp.358-359（2024年9月）",
+      type: "domestic",
+      themes: ["materials"],
+      url: "https://doi.org/10.14920/jwstaikai.2024f.0_358"
+    },
+    {
+      year: 2023,
+      title: "摩擦肉盛法とWAAM法の組み合わせによる鉄鋼基材へのアルミニウム合金の積層",
+      authors: "中谷樹, 永松秀朗, 笹原弘之",
+      venue: "第30回 学生会員卒業研究発表講演会, I26（2023年3月）",
+      type: "domestic",
+      themes: ["materials"],
+      url: ""
+    },
+    {
+      period: "2025 —",
+      title: "宇宙空間でのC/C複合材料の精密組立を想定した活性金属ろう材による可逆接合技術の開発",
+      program: "石福金属興業株式会社 貴金属研究開発助成金",
+      role: "研究代表者",
+      type: "grant",
+      themes: ["materials"],
+      url: "https://www.ishifuku-kinzoku.co.jp/topics/2025/grant.html"
+    },
+    {
+      period: "2025 —",
+      title: "東京工業大学つばめ博士学生奨学金（特別奨学金）",
+      type: "award",
+      themes: ["materials"],
+      url: ""
+    },
+    {
+      year: 2025,
+      title: "日本学生支援機構 第一種奨学金 特に優れた業績による返還免除（修士課程）",
+      type: "award",
+      themes: ["materials"],
+      url: ""
+    },
+
+    /* ---- 宇宙政策 ---- */
+    {
+      year: 2025,
+      title: "月面核融合発電システムの評価と比較分析",
+      authors: "村田晃大, 中谷樹, 大長勇登",
+      venue: "第69回 宇宙科学技術連合講演会, 3B02（2025年11月）",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: ""
+    },
+    {
+      year: 2025,
+      title: "月面居住に向けたロープウェイ建築の有効性",
+      authors: "早川 明日香, 待田凌, 古田摩実, 中谷樹",
+      venue: "第69回 宇宙科学技術連合講演会, 2A08（2025年11月）",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: ""
+    },
+    {
+      year: 2024,
+      title: "月面核融合発電システムに関する国際動向と論点整理",
+      authors: "中谷 樹, 有吉 志満",
+      venue: "第68回 宇宙科学技術連合講演会, 3L04（2024年11月）筆頭発表",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: "https://jxiv.jst.go.jp/index.php/jxiv/preprint/view/1772"
+    },
+    {
+      year: 2024,
+      title: "宇宙空間における核エネルギー利用の国民理解に向けた方策",
+      authors: "有吉 志満, 中谷 樹, 山口 雪乃",
+      venue: "第68回 宇宙科学技術連合講演会, 3L05（2024年11月）",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: ""
+    },
+    {
+      year: 2023,
+      title: "「成長する宇宙産業」にかかわる人材基盤の強化に向けた提言",
+      authors: "梅宮愛佳, 中谷樹, 有吉志満",
+      venue: "第67回 宇宙科学技術連合講演会（2023年10月）",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202402262621396596"
+    },
+    {
+      year: 2023,
+      title: "ロケットによる環境リスク低減を目的とした施策案とその評価",
+      authors: "有吉志満, 玉田洋一朗, 阿部舞耶, 中谷樹",
+      venue: "第67回 宇宙科学技術連合講演会（2023年10月）",
+      type: "domestic",
+      themes: ["space-policy"],
+      url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202402243656834586"
+    },
+    {
+      year: 2024,
+      title: "宇宙での核融合エネルギー利用に関する国際動向と論点整理",
+      authors: "中谷樹, 有吉志満",
+      venue: "第56回ニュースペース研究会（2024年8月）招待講演",
+      type: "misc",
+      themes: ["space-policy"],
+      url: "https://ngsl.or.jp/news/meeting-56/"
+    },
+
+    /* ---- 探究活動支援 ---- */
+    {
+      year: 2026,
+      title: "学士課程を対象とした探究活動を支える教材開発とその検証 — 東京科学大学におけるリベラルアーツ教育を事例にして",
+      authors: "黒丸愛美, 中谷樹, 岡田佐織, 鈴木健雄",
+      venue: "第32回 大学教育研究フォーラム 発表論文集, pp.37-38（2026年2月）",
+      type: "domestic",
+      themes: ["inquiry"],
+      url: ""
+    },
+    {
+      year: 2026,
+      title: "東京科学大学 探究活動の進め方ガイド",
+      authors: "東京科学大学リベラルアーツプログラム, 探究WS担当TA",
+      venue: "教育教材（2026年2月）",
+      type: "misc",
+      themes: ["inquiry"],
+      url: ""
+    }
+  ],
+
+  /* ------------------------------------------------------------------
+     4. プロジェクト
+     image に画像のパス（例 "images/port-c.jpg"）を入れると写真が表示され、
+     "" のままなら「画像を追加」の枠が表示されます。
+     links は複数のリンクを並べられます。不要なら空の配列 [] にします。
+     ------------------------------------------------------------------ */
+  projects: [
+    {
+      year: "2021",
+      title: "第8回 宇宙建築賞 入賞「PortC」",
+      description:
+        "月面における宇宙港の建設構想を提案し、第8回宇宙建築賞で入賞しました。月面基地の建築アイデアとして、輸送拠点となる港湾機能と居住機能をあわせ持つ構造を検討したものです。本作品は第66回宇宙科学技術連合講演会（2022年11月）の企業展示にも出展し、学会の場で構想を発信しました。",
+      image: "",
+      links: [
+        { label: "受賞作品ページ", url: "https://tnlabsa.wixsite.com/tnlab/%E7%AC%AC8%E5%9B%9E-%E5%84%AA%E7%A7%80%E4%BD%9C%E5%93%81" },
+        { label: "第66回 宇宙科学技術連合講演会", url: "https://branch.jsass.or.jp/ukaren66/" }
+      ]
+    },
+    {
+      year: "2023",
+      title: "CanSat プロジェクト — ARLISS 2023 Best Mission Award 1st Place",
+      description:
+        "小型宇宙機の技術実証を行うCanSatプロジェクトに授業の一環として取り組み、その後チームで自主的に国際大会ARLISSへ出場しました。月面クレータ内での水資源運搬を想定し、パイプラインを自動敷設するシステムを開発して技術実証を行い、Best Mission Award 1st Place を受賞しています。要求の異なる複数の設計要件を整理し、設計から加工までを自チームで完結させる過程で、技術面とプロジェクトマネジメントの両面を実践的に習得しました。",
+      image: "",
+      links: [
+        { label: "ARLISS（UNISEC）", url: "https://unisec.jp/activities/arliss" }
+      ]
+    },
+    {
+      year: "2023",
+      title: "エンジニアリングデザインプロジェクト（EDP）",
+      description:
+        "機械系エンジニアリングデザインコースにおいて、デザイン思考にもとづくプロダクト開発に取り組みました。デザイン思考はユーザーへの共感を通じて潜在的なニーズを洞察する思考法であり、工学的な専門知識を社会実装につなげる過程に関心をもって参加したものです。企業から与えられた「中長距離トラックドライバーの生活を再デザインする」というテーマに対し、ドライバーへのインタビューを反復して仮説の構築と検証を重ね、家族と離れて働くドライバーとその家族に向けたWebカメラを製作しました。成果は一般向けの最終発表会で公開しています。",
+      image: "",
+      links: [
+        { label: "プロジェクト紹介記事", url: "https://medium.com/titech-eng-and-design/2023%E5%B9%B4%E5%BA%A6edp-%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8B%E3%83%81%E3%82%A7%E3%82%A2-team-7-%E3%82%AB%E3%83%AA%E3%83%B3%E3%83%90-c5eef5f510cc" },
+        { label: "EDP Gala 2024", url: "https://edpgala-2024.peatix.com/view" }
+      ]
+    },
+    {
+      year: "2022 —",
+      title: "ASE-Lab／宇宙建築学ゼミ 主宰",
+      description:
+        "有人宇宙居住施設の建設に関心をもち、研究に関わる知識を深めるとともに分野の裾野を広げることを目的として、オンラインの「宇宙建築学ゼミ」を主宰しています。全国から集まった学生とともに、宇宙用材料や接合法といった材料工学の話題から月面都市の形成構想まで、幅広いテーマで継続的にゼミを運営しています。",
+      image: "",
+      links: [
+        { label: "ASE-Lab（note）", url: "https://note.com/ase_lab_/n/nc02d63dab0a2" }
+      ]
+    }
+  ],
+
+  /* ------------------------------------------------------------------
+     5. 学歴（新しい順）
+     ------------------------------------------------------------------ */
+  education: [
+    {
+      period: "2025年4月 — 現在",
+      title: "東京科学大学 工学院 機械系 エンジニアリングデザインコース 博士後期課程",
+      description: ""
+    },
+    {
+      period: "2023年4月 — 2025年3月",
+      title: "東京工業大学 工学院 機械系 エンジニアリングデザインコース 修士課程",
+      description: "修士（工学）"
+    },
+    {
+      period: "2020年4月 — 2023年3月",
+      title: "電気通信大学 情報理工学域 Ⅲ類 機械知能システム工学科 学士課程",
+      description: ""
+    },
+    {
+      period: "2015年4月 — 2020年3月",
+      title: "茨城工業高等専門学校 機械システム工学科",
+      description: ""
+    }
+  ],
+
+  /* ------------------------------------------------------------------
+     6. 職歴（新しい順）
+     ------------------------------------------------------------------ */
+  experience: [
+    {
+      period: "2024年 — 現在",
+      title: "Webサービス・ホームページ制作",
+      description: "担当した制作物や技術をここに書きます。"
+    },
+    {
+      period: "2023年 — 現在",
+      title: "東京科学大学 ティーチングアシスタント",
+      description: "学士課程のエンジニアリングデザイン応用科目、およびリベラルアーツプログラムの探究ワークショップを担当しています。"
+    },
+    {
+      period: "2021年4月 — 現在",
+      title: "一般社団法人 ニュースペース国際戦略研究所（NGSL） 学生研究員",
+      description: "国の宇宙政策に関する調査研究に従事しています。世界の中の日本という視座から宇宙開発の将来像を検討し、調査結果を政策提言へつなげる過程を通じて、長期的かつ広い視野を養ってきました。専門分野の異なる実務家・研究者との交流の機会も、自身のキャリア形成に活かしています。"
+    }
+  ],
+
+  /* ------------------------------------------------------------------
+     7. 外部リンク
+     ------------------------------------------------------------------ */
+  links: [
+    { label: "researchmap", url: "https://researchmap.jp/Tatsuki_Nakatani" },
+    { label: "ORCID",       url: "https://orcid.org/0009-0008-1385-2778" },
+    { label: "J-GLOBAL",    url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601013543771460" },
+    { label: "GitHub",      url: "https://github.com/N-Tatsuki" },
+    { label: "ASE-Lab",     url: "https://note.com/ase_lab_/n/nc02d63dab0a2" }
+  ]
+};
+
+</script>
+<script>
+/* =====================================================================
+   data.js の内容を読み取ってページを組み立てます。
+   通常はこのファイルを編集する必要はありません。
+   ===================================================================== */
+(function () {
+  "use strict";
+
+  var D = window.SITE_DATA || {};
+  var P = D.profile || {};
+
+  /* ナビゲーションと目次はこの一覧から生成されます */
+  var SECTIONS = [
+    { id: "education",  ja: "学歴",         en: "Education" },
+    { id: "research",   ja: "研究テーマ",    en: "Research" },
+    { id: "projects",   ja: "プロジェクト",  en: "Projects" },
+    { id: "experience", ja: "職歴",         en: "Experience" },
+    { id: "contact",    ja: "外部リンク",    en: "Links" }
+  ];
+
+  /* 業績種別の表示名と並び順 */
+  var TYPE_ORDER = ["journal", "international", "domestic", "award", "grant", "misc"];
+  var TYPE_LABEL = {
+    journal: "論文",
+    international: "国際会議",
+    domestic: "国内会議・研究会",
+    award: "受賞",
+    grant: "競争的資金等の研究課題",
+    misc: "その他"
+  };
+
+  function esc(s) {
+    return String(s == null ? "" : s)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function byId(id) { return document.getElementById(id); }
+
+  /* ---------- 基本情報の差し込み ---------- */
+  function fillBindings() {
+    var map = {
+      nameJa: P.nameJa,
+      nameEn: P.nameEn,
+      affiliation: P.affiliation,
+      lead: P.lead,
+      email: P.email,
+      year: new Date().getFullYear()
+    };
+    Object.keys(map).forEach(function (key) {
+      if (map[key] == null) return;
+      document.querySelectorAll('[data-bind="' + key + '"]').forEach(function (el) {
+        el.textContent = String(map[key]);
+      });
+    });
+  }
+
+  /* ---------- サイドバーのナビゲーション ---------- */
+  function renderNav() {
+    var nav = byId("railNav");
+    if (!nav) return;
+    nav.innerHTML = SECTIONS.map(function (s) {
+      return '<a href="#' + s.id + '">' + s.ja + "</a>";
+    }).join("");
+  }
+
+  /* ---------- 業績1件分 ---------- */
+  function pubItem(p) {
+    var lines = [p.authors, p.venue, p.program, p.role, p.number]
+      .filter(Boolean).map(esc).join("<br>");
+    var link = p.url
+      ? '<a class="pub__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">リンクを開く</a>'
+      : "";
+    return '<li class="pub">' +
+      '<span class="pub__year">' + esc(p.period || p.year) + "</span>" +
+      "<div>" +
+        '<p class="pub__title">' + esc(p.title) + "</p>" +
+        (lines ? '<p class="pub__meta">' + lines + "</p>" : "") +
+        link +
+      "</div></li>";
+  }
+
+  /* 新しい順に並べる。period が "2025 — 2026" の場合は先頭の数字を使う */
+  function sortKey(p) {
+    if (p.year) return Number(p.year) || 0;
+    var m = String(p.period || "").match(/\d{4}/g);
+    return m ? Number(m[m.length - 1]) : 0;
+  }
+
+  /* ---------- 研究テーマと業績 ---------- */
+  function renderThemes() {
+    var box = byId("themes");
+    if (!box) return;
+    var all = Array.isArray(D.publications) ? D.publications : [];
+
+    box.innerHTML = (D.themes || []).map(function (t) {
+      var mine = all.filter(function (p) {
+        return Array.isArray(p.themes) && p.themes.indexOf(t.id) !== -1;
+      });
+
+      var body;
+      if (mine.length === 0) {
+        body = '<p class="empty">業績データは準備中です。' +
+               "data.js の publications に追加すると、ここに表示されます。</p>";
+      } else {
+        body = TYPE_ORDER.map(function (type) {
+          var group = mine
+            .filter(function (p) { return p.type === type; })
+            .sort(function (a, b) { return sortKey(b) - sortKey(a); });
+          if (group.length === 0) return "";
+          return '<div class="pubgroup">' +
+            '<h4 class="pubgroup__label">' + TYPE_LABEL[type] + "</h4>" +
+            '<ul class="publist">' + group.map(pubItem).join("") + "</ul></div>";
+        }).join("");
+      }
+
+      return '<article class="theme">' +
+        (t.period ? '<span class="theme__period">' + esc(t.period) + "</span>" : "") +
+        '<h3 class="theme__title">' + esc(t.title) + "</h3>" +
+        '<p class="theme__desc">' + esc(t.description) + "</p>" +
+        body +
+      "</article>";
+    }).join("");
+  }
+
+  /* ---------- プロジェクト ---------- */
+  function renderProjects() {
+    var box = byId("projectList");
+    if (!box) return;
+
+    box.innerHTML = (D.projects || []).map(function (pr) {
+      var figure = pr.image
+        ? '<img src="' + esc(pr.image) + '" alt="' + esc(pr.title) + 'の写真" loading="lazy">'
+        : '<div class="card__ph">画像を追加</div>';
+      var list = Array.isArray(pr.links) ? pr.links.slice() : [];
+      if (pr.link) list.push({ label: pr.linkLabel || "詳細を見る", url: pr.link });
+      var link = list.filter(function (l) { return l.url; }).map(function (l) {
+        return '<a class="card__link" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+          esc(l.label) + " &rarr;</a>";
+      }).join("");
+      if (link) link = '<div class="card__links">' + link + "</div>";
+      return '<article class="card">' +
+        '<figure class="card__figure">' + figure + "</figure>" +
+        '<div class="card__body">' +
+          '<span class="card__year">' + esc(pr.year) + "</span>" +
+          '<h3 class="card__title">' + esc(pr.title) + "</h3>" +
+          '<p class="card__desc">' + esc(pr.description) + "</p>" +
+          link +
+        "</div></article>";
+    }).join("");
+  }
+
+  /* ---------- 学歴・職歴（同じ形式で表示します） ---------- */
+  function renderTrack(elementId, items) {
+    var box = byId(elementId);
+    if (!box) return;
+    box.innerHTML = (items || []).map(function (it) {
+      return '<li class="job">' +
+        '<span class="job__period">' + esc(it.period) + "</span>" +
+        '<p class="job__role">' + esc(it.title) + "</p>" +
+        (it.description ? '<p class="job__desc">' + esc(it.description) + "</p>" : "") +
+      "</li>";
+    }).join("");
+  }
+
+  /* ---------- リンク ---------- */
+  function renderLinks() {
+    var box = byId("linkList");
+    if (!box) return;
+    box.innerHTML = (D.links || [])
+      .filter(function (l) { return l.url; })
+      .map(function (l) {
+        return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+          esc(l.label) + "</a></li>";
+      }).join("");
+  }
+
+  /* ---------- 現在位置に応じてナビを強調 ---------- */
+  function initScrollSpy() {
+    var links = Array.prototype.slice.call(
+      document.querySelectorAll(".rail__nav a")
+    );
+    var sections = links
+      .map(function (a) { return document.querySelector(a.getAttribute("href")); })
+      .filter(Boolean);
+    if (!("IntersectionObserver" in window) || sections.length === 0) return;
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        links.forEach(function (a) {
+          a.classList.toggle(
+            "is-active",
+            a.getAttribute("href") === "#" + entry.target.id
+          );
+        });
+      });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+
+    sections.forEach(function (s) { observer.observe(s); });
+  }
+
+  fillBindings();
+  renderNav();
+  renderThemes();
+  renderProjects();
+  renderTrack("educationList", D.education);
+  renderTrack("experienceList", D.experience);
+  renderLinks();
+  initScrollSpy();
+})();
+
+</script>
+</body>
+</html>
