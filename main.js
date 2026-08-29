@@ -10,12 +10,11 @@
 
   /* ナビゲーションと目次はこの一覧から生成されます */
   var SECTIONS = [
-    { id: "about",      ja: "概要",           en: "About" },
-    { id: "research",   ja: "研究テーマ",      en: "Research" },
-    { id: "projects",   ja: "プロジェクト",    en: "Projects" },
-    { id: "education",  ja: "学歴",           en: "Education" },
-    { id: "experience", ja: "職歴",           en: "Experience" },
-    { id: "contact",    ja: "リンク・連絡先",  en: "Contact" }
+    { id: "education",  ja: "学歴",         en: "Education" },
+    { id: "research",   ja: "研究テーマ",    en: "Research" },
+    { id: "projects",   ja: "プロジェクト",  en: "Projects" },
+    { id: "experience", ja: "職歴",         en: "Experience" },
+    { id: "contact",    ja: "外部リンク",    en: "Links" }
   ];
 
   /* 業績種別の表示名と並び順 */
@@ -49,16 +48,9 @@
     Object.keys(map).forEach(function (key) {
       if (map[key] == null) return;
       document.querySelectorAll('[data-bind="' + key + '"]').forEach(function (el) {
-        el.textContent = map[key];
+        el.textContent = String(map[key]);
       });
     });
-
-    var about = document.querySelector('[data-bind="about"]');
-    if (about && Array.isArray(P.about)) {
-      about.innerHTML = P.about.map(function (p) {
-        return "<p>" + esc(p) + "</p>";
-      }).join("");
-    }
   }
 
   /* ---------- サイドバーのナビゲーション ---------- */
@@ -150,10 +142,13 @@
       var figure = pr.image
         ? '<img src="' + esc(pr.image) + '" alt="' + esc(pr.title) + 'の写真" loading="lazy">'
         : '<div class="card__ph">画像を追加</div>';
-      var link = pr.link
-        ? '<a class="card__link" href="' + esc(pr.link) + '" target="_blank" rel="noopener">' +
-          esc(pr.linkLabel || "詳細を見る") + " &rarr;</a>"
-        : "";
+      var list = Array.isArray(pr.links) ? pr.links.slice() : [];
+      if (pr.link) list.push({ label: pr.linkLabel || "詳細を見る", url: pr.link });
+      var link = list.filter(function (l) { return l.url; }).map(function (l) {
+        return '<a class="card__link" href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
+          esc(l.label) + " &rarr;</a>";
+      }).join("");
+      if (link) link = '<div class="card__links">' + link + "</div>";
       return '<article class="card">' +
         '<figure class="card__figure">' + figure + "</figure>" +
         '<div class="card__body">' +

@@ -82,6 +82,7 @@ a{ color:var(--navy-700); }
 .rail__affil{
   margin:10px 0 0;
   font-size:12.5px; line-height:1.7; color:#B9C6DC;
+  white-space:pre-line;
 }
 
 .rail__nav{
@@ -195,9 +196,6 @@ a{ color:var(--navy-700); }
   font-size:13.5px; color:var(--ink-muted);
 }
 
-.prose p{ margin:0 0 1.1em; }
-.prose p:last-child{ margin-bottom:0; }
-
 /* =========================================================
    研究テーマ
    ========================================================= */
@@ -245,6 +243,7 @@ a{ color:var(--navy-700); }
   font-variant-numeric:tabular-nums; padding-top:3px;
 }
 .pub__title{ margin:0; font-size:15px; font-weight:500; line-height:1.7; }
+.pub__title:last-child{ padding-bottom:2px; }
 .pub__meta{
   margin:3px 0 0;
   font-size:13px; line-height:1.7; color:var(--ink-muted);
@@ -298,8 +297,12 @@ a{ color:var(--navy-700); }
   font-size:18px; font-weight:600; line-height:1.6; color:var(--navy-900);
 }
 .card__desc{ margin:0; font-size:14px; color:var(--ink-muted); }
+.card__links{
+  display:flex; flex-wrap:wrap; gap:8px 18px;
+  margin-top:16px;
+}
 .card__link{
-  display:inline-block; margin-top:14px;
+  display:inline-block;
   font-size:13px; font-weight:500;
   border-bottom:1px solid var(--brass-soft);
   text-decoration:none;
