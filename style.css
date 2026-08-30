@@ -1056,3 +1056,89 @@ details.theme{
     padding-bottom:3px;
   }
 }
+
+/* =========================================================
+   2026-08-30 update 7: stable project media / navigation / card depth
+   ========================================================= */
+
+/* カードに奥行きをつける */
+.card{
+  box-shadow:0 7px 22px rgba(11,27,51,.11);
+  transition:box-shadow .2s ease;
+}
+.card:hover{
+  box-shadow:0 10px 28px rgba(11,27,51,.14);
+}
+
+/* EDP と ASE-Lab の画像右側の区切り線だけを消す */
+.card--no-image-rule .card__figure{
+  border-right:0 !important;
+}
+
+/* PC版：カードを開いても画像の上端を固定する */
+@media (min-width:768px){
+  .card,
+  .card.is-expanded{
+    align-items:start;
+  }
+  .card__figure,
+  .card.is-expanded .card__figure{
+    align-self:start !important;
+  }
+}
+
+/* アンカー移動時の見出し位置を安定させる */
+.sec,
+details.theme{
+  scroll-margin-top:24px;
+}
+
+/* PCサイドバーの末尾項目も常に操作可能にする */
+@media (min-width:1024px){
+  .rail__nav{
+    min-height:0;
+    overflow-y:auto;
+    overscroll-behavior:contain;
+    scrollbar-width:thin;
+  }
+  .rail__nav a{
+    position:relative;
+    z-index:1;
+    pointer-events:auto;
+  }
+}
+
+/* SPヘッダー：全タブを横スクロール可能にし、クリック対象を確実に前面へ */
+@media (max-width:1023px){
+  .rail__nav{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    overflow-y:hidden;
+    overscroll-behavior-x:contain;
+    touch-action:pan-x;
+  }
+  .rail__nav-group{
+    flex:0 0 auto;
+  }
+  .rail__nav a{
+    position:relative;
+    z-index:2;
+    pointer-events:auto;
+  }
+  .sec,
+  details.theme{
+    scroll-margin-top:72px;
+  }
+}
+
+/* SPプロジェクト：矢印は閉じたカードの中央で固定し、展開後も移動させない */
+@media (max-width:767px){
+  .project-carousel{
+    --project-nav-top:50%;
+  }
+  .project-nav{
+    top:var(--project-nav-top) !important;
+    transform:translateY(-50%);
+  }
+}

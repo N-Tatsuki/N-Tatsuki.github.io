@@ -673,7 +673,9 @@ window.SITE_DATA = {
           esc(l.label) + " &rarr;</a>";
       }).join("");
       if (link) link = '<div class="card__links">' + link + "</div>";
-      return '<article class="card">' +
+      var cardExtraClass = (/エンジニアリングデザインプロジェクト/.test(pr.title) || /ASE-Lab/.test(pr.title))
+        ? " card--no-image-rule" : "";
+      return '<article class="card' + cardExtraClass + '">' +
         '<figure class="card__figure">' + figure + "</figure>" +
         '<div class="card__body">' +
           '<div class="card__meta"><span class="card__year">' + esc(pr.year) + "</span></div>" +
@@ -754,29 +756,68 @@ window.SITE_DATA = {
       d.addEventListener("toggle", function () {
         var card = d.closest(".card");
         if (card) card.classList.toggle("is-expanded", d.open);
+        /* SPでは開く前の矢印位置を維持。閉じた時だけ中央位置を再計算する */
+        if (!d.open && typeof window.updateProjectNavAnchor === "function") {
+          requestAnimationFrame(function () { window.updateProjectNavAnchor(); });
+        }
       });
     });
   }
 
   /* ---------- SP版プロジェクトカルーセル ---------- */
   function initProjectCarousel() {
+    var carousel = document.querySelector(".project-carousel");
     var box = byId("projectList");
     var prev = byId("projectPrev");
     var next = byId("projectNext");
     var counter = byId("projectCounter");
-    if (!box || !prev || !next) return;
+    if (!carousel || !box || !prev || !next) return;
     var cards = Array.prototype.slice.call(box.querySelectorAll(".card"));
     if (!cards.length) return;
     var index = 0;
 
+    function isSP() {
+      return window.matchMedia("(max-width: 767px)").matches;
+    }
+
+    function activeCard() {
+      return cards[index] || null;
+    }
+
+    function updateNavAnchor() {
+      if (!isSP()) {
+        carousel.style.removeProperty("--project-nav-top");
+        return;
+      }
+      var card = activeCard();
+      if (!card) return;
+      var details = card.querySelector(".card__details");
+      /* 展開中は、閉じていた時に記録した位置をそのまま使う */
+      if (details && details.open && carousel.style.getPropertyValue("--project-nav-top")) return;
+      var carouselRect = carousel.getBoundingClientRect();
+      var cardRect = card.getBoundingClientRect();
+      var center = cardRect.top - carouselRect.top + cardRect.height / 2;
+      carousel.style.setProperty("--project-nav-top", center + "px");
+    }
+    window.updateProjectNavAnchor = updateNavAnchor;
+
     function show(i) {
       index = Math.max(0, Math.min(cards.length - 1, i));
       cards.forEach(function (card, n) {
-        card.classList.toggle("is-carousel-active", n === index);
+        var active = n === index;
+        card.classList.toggle("is-carousel-active", active);
+        /* 次のカードへ移動した時は閉じた状態から表示 */
+        if (!active) {
+          var d = card.querySelector(".card__details");
+          if (d) d.open = false;
+        }
       });
+      var currentDetails = activeCard() && activeCard().querySelector(".card__details");
+      if (currentDetails) currentDetails.open = false;
       prev.disabled = index === 0;
       next.disabled = index === cards.length - 1;
       if (counter) counter.textContent = (index + 1) + " / " + cards.length;
+      requestAnimationFrame(updateNavAnchor);
     }
     prev.addEventListener("click", function () { show(index - 1); });
     next.addEventListener("click", function () { show(index + 1); });
@@ -792,6 +833,11 @@ window.SITE_DATA = {
       if (Math.abs(dx) < 50) return;
       if (dx < 0) show(index + 1); else show(index - 1);
     }, { passive: true });
+
+    window.addEventListener("resize", function () {
+      var d = activeCard() && activeCard().querySelector(".card__details");
+      if (!d || !d.open) requestAnimationFrame(updateNavAnchor);
+    });
     show(0);
   }
 
@@ -871,27 +917,93 @@ window.SITE_DATA = {
 
   /* ---------- 現在位置に応じてナビを強調 ---------- */
   function initScrollSpy() {
-    var links = Array.prototype.slice.call(
-      document.querySelectorAll(".rail__nav a")
-    );
-    var sections = links
-      .map(function (a) { return document.querySelector(a.getAttribute("href")); })
-      .filter(Boolean);
-    if (!("IntersectionObserver" in window) || sections.length === 0) return;
+    var nav = byId("railNav");
+    if (!nav) return;
+    var links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+    var targets = links.map(function (a) {
+      var id = a.getAttribute("href");
+      var el = id ? document.querySelector(id) : null;
+      return el ? { link: a, el: el, hash: id } : null;
+    }).filter(Boolean);
+    if (!targets.length) return;
 
-    var observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        links.forEach(function (a) {
-          a.classList.toggle(
-            "is-active",
-            a.getAttribute("href") === "#" + entry.target.id
-          );
-        });
+    function isSP() {
+      return window.matchMedia("(max-width: 1023px)").matches;
+    }
+
+    function displayHash(hash) {
+      /* SPでは研究の下位項目を隠しているため、研究本体を選択表示する */
+      if (isSP() && /^#theme-/.test(hash)) return "#research";
+      return hash;
+    }
+
+    var lastActive = "";
+    function setActive(hash, bringIntoView) {
+      hash = displayHash(hash);
+      if (hash === lastActive && !bringIntoView) return;
+      lastActive = hash;
+      var activeLink = null;
+      links.forEach(function (a) {
+        var active = a.getAttribute("href") === hash;
+        a.classList.toggle("is-active", active);
+        if (active) activeLink = a;
       });
-    }, { rootMargin: "-25% 0px -65% 0px" });
+      if (activeLink && isSP() && bringIntoView) {
+        activeLink.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+      }
+    }
 
-    sections.forEach(function (s) { observer.observe(s); });
+    function headerOffset() {
+      if (!isSP()) return 20;
+      var rail = document.querySelector(".rail");
+      return (rail ? rail.getBoundingClientRect().height : 52) + 12;
+    }
+
+    links.forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var hash = a.getAttribute("href");
+        var target = hash ? document.querySelector(hash) : null;
+        if (!target) return;
+        e.preventDefault();
+        if (target.matches && target.matches("details.theme") && isSP()) target.open = true;
+        setActive(hash, true);
+        var top = target.getBoundingClientRect().top + window.pageYOffset - headerOffset();
+        window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+        if (history.pushState) history.pushState(null, "", hash);
+        else location.hash = hash;
+      });
+    });
+
+    function updateFromScroll() {
+      var y = window.pageYOffset + headerOffset() + 34;
+      var doc = document.documentElement;
+      var atBottom = window.innerHeight + window.pageYOffset >= doc.scrollHeight - 6;
+      var chosen = targets[0];
+      targets.forEach(function (t) {
+        var top = t.el.getBoundingClientRect().top + window.pageYOffset;
+        if (top <= y) chosen = t;
+      });
+      if (atBottom) {
+        var contact = targets.filter(function (t) { return t.hash === "#contact"; })[0];
+        if (contact) chosen = contact;
+      }
+      if (chosen) setActive(chosen.hash, false);
+    }
+
+    var ticking = false;
+    window.addEventListener("scroll", function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        updateFromScroll();
+        ticking = false;
+      });
+    }, { passive: true });
+    window.addEventListener("resize", updateFromScroll);
+    window.addEventListener("hashchange", function () {
+      if (location.hash) setActive(location.hash, true);
+    });
+    updateFromScroll();
   }
 
   fillBindings();
