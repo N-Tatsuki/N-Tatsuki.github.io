@@ -36,6 +36,7 @@
     <nav class="rail__nav" id="railNav" aria-label="ページ内ナビゲーション"></nav>
 
     <p class="rail__foot">&copy; <span data-bind="year"></span> Tatsuki Nakatani</p>
+    <p class="rail__updated">最終更新日：2026年8月30日</p>
   </header>
 
   <!-- ============ 本文 ============ -->
@@ -114,26 +115,29 @@ window.SITE_DATA = {
       period: "修士～博士課程",
       title: "複合材料の接合に関する研究",
       description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。",
-      keywords: ["C/C複合材料", "活性金属ろう付", "軌道上組立"]
+      keywords: ["C/C複合材料", "活性金属ろう付", "軌道上組立"],
+      membership: "溶接学会（2024年4月 - 現在）"
     },
     {
       id: "metal-am",
       period: "学士課程",
       title: "金属3D積層造形に関する研究",
       description: "マシニングセンタによる摩擦肉盛法と3軸のＮＣ自動溶接機によるＷＡＡＭを組み合わせた三次元積層造形の研究を行いました。",
-      keywords: ["金属積層造形", "WAAM", "摩擦肉盛"]
+      keywords: ["金属積層造形", "WAAM", "摩擦肉盛"],
+      membership: "精密工学会（2022年4月 - 2023年3月）"
     },
     {
       id: "space-policy",
       period: "2021 〜 現在",
       title: "宇宙政策に関する研究",
       description: "日本の宇宙政策に関する調査研究業務を行っています。企業からの委託や個人研究を通して、宇宙政策の在り方について理解を深めています。大学院での研究成果の産業利用に向けて視野を広げる意図もあります。",
-      keywords: ["宇宙政策", "宇宙産業", "軌道上サービス"]
+      keywords: ["宇宙政策", "宇宙産業", "軌道上サービス"],
+      membership: "日本航空宇宙学会（2023年4月 - 現在）"
     },
     {
       id: "inquiry",
       period: "2023 〜 現在",
-      title: "学士課程の教養教育プロセスに関する研究",
+      title: "学士課程の探究活動に関する研究",
       description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）業務を担当しています。授業改善や教材開発を行っています。",
       keywords: ["探究活動", "教養教育", "教材開発"]
     }
@@ -382,23 +386,27 @@ window.SITE_DATA = {
   education: [
     {
       period: "2025年4月 — 現在",
-      title: "東京科学大学 工学院 機械系 エンジニアリングデザインコース 博士後期課程",
-      description: ""
+      institution: "東京科学大学",
+      program: "工学院 機械系 エンジニアリングデザインコース 博士後期課程",
+      degree: ""
     },
     {
       period: "2023年4月 — 2025年3月",
-      title: "東京工業大学 工学院 機械系 エンジニアリングデザインコース 修士課程",
-      description: ""
+      institution: "東京工業大学",
+      program: "工学院 機械系 エンジニアリングデザインコース 修士課程",
+      degree: "修士（工学）"
     },
     {
       period: "2020年4月 — 2023年3月",
-      title: "電気通信大学 情報理工学域 Ⅲ類 機械知能システム工学科 学士課程",
-      description: ""
+      institution: "電気通信大学",
+      program: "情報理工学域 Ⅲ類 機械知能システム工学科 学士課程",
+      degree: "学士（工学）"
     },
     {
       period: "2015年4月 — 2020年3月",
-      title: "茨城工業高等専門学校 機械システム工学科",
-      description: ""
+      institution: "茨城工業高等専門学校",
+      program: "機械システム工学科",
+      degree: "準学士（工学）"
     }
   ],
 
@@ -456,7 +464,7 @@ window.SITE_DATA = {
         { id: "theme-brazing", ja: "複合材料の接合に関する研究" },
         { id: "theme-metal-am", ja: "金属3D積層造形に関する研究" },
         { id: "theme-space-policy", ja: "宇宙政策に関する研究" },
-        { id: "theme-inquiry", ja: "学士課程の教養教育プロセスに関する研究" }
+        { id: "theme-inquiry", ja: "学士課程の探究活動に関する研究" }
       ]
     },
     { id: "projects",   ja: "プロジェクト",  en: "Projects" },
@@ -521,7 +529,22 @@ window.SITE_DATA = {
     var venue = String(p.venue || p.program || "")
       .replace(/\s*\/\s*Impact Factor.*$/i, "")
       .trim();
-    var parts = [p.authors, p.title, venue].filter(Boolean);
+
+    /* 掲載情報の末尾にある出版年月を分離する */
+    var dateMatch = venue.match(/（(\d{4})年(\d{1,2})月）/);
+    var year = dateMatch ? dateMatch[1] : String(p.year || "");
+    var month = dateMatch ? String(Number(dateMatch[2])) : "";
+    venue = venue.replace(/（\d{4}年\d{1,2}月）/g, "").trim();
+
+    /* 日本語業績は「2024年9月」、英語業績は「2026.1」の形式 */
+    var isJapanese = /[\u3040-\u30ff\u3400-\u9fff]/.test(String(p.title || ""));
+    var published = "";
+    if (year) {
+      if (isJapanese) published = year + "年" + (month ? month + "月" : "");
+      else published = year + (month ? "." + month : "");
+    }
+
+    var parts = [p.authors, p.title, venue, published].filter(Boolean);
     return parts.join("，");
   }
 
@@ -540,12 +563,12 @@ window.SITE_DATA = {
 
     var citeId = "pub-citation-" + (++pubCounter);
     var actions = '<div class="pub__actions">' +
-      (p.url ? '<a class="pub__action-badge" href="' + esc(p.url) + '" target="_blank" rel="noopener">URL</a>' : '') +
-      (p.authors ? '<button class="pub__action-badge pub__bib-toggle" type="button" aria-expanded="false" aria-controls="' + citeId + '">BibTex</button>' : '') +
+      (p.url ? '<a class="pub__action-link" href="' + esc(p.url) + '" target="_blank" rel="noopener">URL</a>' : '') +
+      (p.authors ? '<button class="pub__action-link pub__bib-toggle" type="button" aria-expanded="false" aria-controls="' + citeId + '">BibTex</button>' : '') +
       '</div>';
     var citePanel = p.authors
       ? '<div class="pub__cite-panel" id="' + citeId + '" hidden>' +
-          '<div class="pub__cite-head"><span>論文情報</span><button class="pub__copy" type="button" data-copy-target="' + citeId + '-text">コピー</button></div>' +
+          '<div class="pub__cite-head"><span>論文情報</span><button class="pub__copy" type="button" data-copy-target="' + citeId + '-text">Copy</button></div>' +
           '<code class="pub__cite-text" id="' + citeId + '-text">' + esc(citationText(p)) + '</code>' +
         '</div>'
       : '';
@@ -594,6 +617,9 @@ window.SITE_DATA = {
       var keywords = Array.isArray(t.keywords) && t.keywords.length
         ? '<p class="theme__keywords"><span>Keyword：</span>' + t.keywords.map(esc).join(' / ') + '</p>'
         : '';
+      var membership = t.membership
+        ? '<p class="theme__membership"><span>所属学会：</span>' + esc(t.membership) + '</p>'
+        : '';
 
       return '<details class="theme" id="theme-' + esc(t.id) + '">' +
         '<summary class="theme__summary">' +
@@ -602,7 +628,7 @@ window.SITE_DATA = {
         '</summary>' +
         '<div class="theme__content">' +
           (t.description ? '<p class="theme__desc">' + esc(t.description) + '</p>' : '') +
-          keywords + body +
+          keywords + membership + body +
         '</div>' +
       '</details>';
     }).join("");
@@ -643,6 +669,15 @@ window.SITE_DATA = {
     var box = byId(elementId);
     if (!box) return;
     box.innerHTML = (items || []).map(function (it) {
+      if (it.institution) {
+        return '<li class="job education-item">' +
+          '<span class="job__period">' + esc(it.period) + "</span>" +
+          '<div class="education-item__body">' +
+            '<p class="job__role education-item__institution">' + esc(it.institution) + "</p>" +
+            (it.program ? '<p class="education-item__program">' + esc(it.program) + "</p>" : "") +
+            (it.degree ? '<p class="education-item__degree">' + esc(it.degree) + "</p>" : "") +
+          '</div></li>';
+      }
       return '<li class="job">' +
         '<span class="job__period">' + esc(it.period) + "</span>" +
         '<p class="job__role">' + esc(it.title) + "</p>" +
@@ -713,7 +748,7 @@ window.SITE_DATA = {
       var text = target.textContent || "";
       function done() {
         var old = copy.textContent;
-        copy.textContent = "コピー済み";
+        copy.textContent = "Copied";
         setTimeout(function () { copy.textContent = old; }, 1200);
       }
       if (navigator.clipboard && navigator.clipboard.writeText) {
