@@ -1,0 +1,9 @@
+External-link icon references (2026-08-30)
+
+researchmap: researchmap logotype / Wikimedia Commons (source attributed to researchmap/NII)
+ORCID: ORCID iD display guidelines / ORCID official site
+J-GLOBAL: J-GLOBAL official link policy banner
+Google Scholar: Google Scholar logo / Wikimedia Commons (author/source: Google)
+ResearchGate: ResearchGate icon / Wikimedia Commons / official ResearchGate branding references
+
+The site stores compact local SVG variants in this folder so the icons do not depend on third-party image hosting at page-load time.
