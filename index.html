@@ -58,7 +58,7 @@
 
     <!-- ---- 研究テーマと業績 ---- -->
     <section class="sec" id="research">
-      <h2 class="sec__title"><span class="sec__eyebrow">Research</span>研究テーマ</h2>
+      <h2 class="sec__title"><span class="sec__eyebrow">Research</span>研究</h2>
       <div id="themes"></div>
     </section>
 
@@ -70,7 +70,7 @@
 
     <!-- ---- 職歴 ---- -->
     <section class="sec" id="experience">
-      <h2 class="sec__title"><span class="sec__eyebrow">Experience</span>職歴</h2>
+      <h2 class="sec__title"><span class="sec__eyebrow">Experience</span>仕事</h2>
       <ol class="track" id="experienceList"></ol>
     </section>
 
@@ -113,25 +113,29 @@ window.SITE_DATA = {
       id: "brazing",
       period: "修士～博士課程",
       title: "複合材料の接合に関する研究",
-      description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。"
+      description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。",
+      keywords: ["C/C複合材料", "活性金属ろう付", "軌道上組立"]
     },
     {
       id: "metal-am",
       period: "学士課程",
       title: "金属3D積層造形に関する研究",
-      description: "マシニングセンタによる摩擦肉盛法と3軸のＮＣ自動溶接機によるＷＡＡＭを組み合わせた三次元積層造形の研究を行いました。"
+      description: "マシニングセンタによる摩擦肉盛法と3軸のＮＣ自動溶接機によるＷＡＡＭを組み合わせた三次元積層造形の研究を行いました。",
+      keywords: ["金属積層造形", "WAAM", "摩擦肉盛"]
     },
     {
       id: "space-policy",
       period: "2021 〜 現在",
       title: "宇宙政策に関する研究",
-      description: "日本の宇宙政策に関する調査研究業務を行っています。企業からの委託や個人研究を通して、宇宙政策の在り方について理解を深めています。大学院での研究成果の産業利用に向けて視野を広げる意図もあります。"
+      description: "日本の宇宙政策に関する調査研究業務を行っています。企業からの委託や個人研究を通して、宇宙政策の在り方について理解を深めています。大学院での研究成果の産業利用に向けて視野を広げる意図もあります。",
+      keywords: ["宇宙政策", "宇宙産業", "軌道上サービス"]
     },
     {
       id: "inquiry",
       period: "2023 〜 現在",
       title: "学士課程の教養教育プロセスに関する研究",
-      description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）業務を担当しています。授業改善や教材開発を行っています。"
+      description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）業務を担当しています。授業改善や教材開発を行っています。",
+      keywords: ["探究活動", "教養教育", "教材開発"]
     }
   ],
 
@@ -332,7 +336,7 @@ window.SITE_DATA = {
       title: "第8回 宇宙建築賞 入賞「PortC」",
       description:
         "宇宙建築学サークルに所属し、学生チームで宇宙建築コンペに挑戦しました。月面における宇宙港の建設構想を提案し、第8回宇宙建築賞で入賞しました。月面の景観を保全し、ロケット打ち上げをシンボルとする宇宙港を設計しました。本作品は第66回宇宙科学技術連合講演会（2022年11月）の企業展示にも出展し、宇宙建築学のアウトリーチ活動を行いました。",
-      image: "",
+      image: "images/spaceArch.jpg",
       links: [
         { label: "受賞作品ページ", url: "https://tnlabsa.wixsite.com/tnlab/%E7%AC%AC8%E5%9B%9E-%E5%84%AA%E7%A7%80%E4%BD%9C%E5%93%81" },
         { label: "第66回 宇宙科学技術連合講演会", url: "https://branch.jsass.or.jp/ukaren66/" }
@@ -343,7 +347,7 @@ window.SITE_DATA = {
       title: "CanSat プロジェクト — ARLISS 2023 Best Mission Award 1st Place",
       description:
         "小型宇宙機の技術実証を行うCanSatプロジェクトに授業の一環として取り組み、その後チームで自主的に国際大会ARLISSへ出場しました。月面クレータ内での水資源運搬を想定し、パイプラインを自動敷設するシステムを開発して技術実証を行い、Best Mission Award 1st Place を受賞しました。要求の異なる複数の設計要件を整理し、設計から加工までを自チームで完結させる過程で、技術面とプロジェクトマネジメントの両面を実践的に学びました。",
-      image: "",
+      image: "images/Cansat.webp",
       links: [
         { label: "ARLISS（UNISEC）", url: "https://unisec.jp/archives/10330" }
       ]
@@ -353,7 +357,7 @@ window.SITE_DATA = {
       title: "エンジニアリングデザインプロジェクト（EDP）",
       description:
         "機械系エンジニアリングデザインコースにおけるPBL型授業です。パートナー企業から与えられた社会課題の解決を目指し、デザイン思考にもとづいてプロダクト開発に取り組みました。デザイン思考はユーザーへの共感を通じて潜在的なニーズを洞察する思考法であり、工学的な専門知識を社会実装につなげる過程に関心を持ち、参加しました。成果は一般向けの最終発表会で公開しています。",
-      image: "",
+      image: "images/EDP.webp",
       links: [
         { label: "プロジェクト紹介記事", url: "https://medium.com/titech-eng-and-design/2023%E5%B9%B4%E5%BA%A6edp-%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8B%E3%83%81%E3%82%A7%E3%82%A2-team-7-%E3%82%AB%E3%83%AA%E3%83%B3%E3%83%90-c5eef5f510cc" },
         { label: "EDP Gala 2024", url: "https://edpgala-2024.peatix.com/view" }
@@ -364,7 +368,7 @@ window.SITE_DATA = {
       title: "ASE-Lab／宇宙建築学ゼミ",
       description:
         "大学院での研究に関わる知識を深めるとともに、宇宙建築分野の裾野を広げることを目的として、オンラインで「宇宙建築学ゼミ」を主宰しました。全国から集まった学生とともに、宇宙用材料や接合法といった材料工学の話題から月面都市の形成構想まで、幅広いテーマで継続的にゼミを運営しました。",
-      image: "",
+      image: "images/researchimage.jpg",
       links: [
         { label: "ASE-Lab 公式サイト", url: "https://www.ase-lab.space/?no-ovl=t" },
         { label: "ASE-Lab（note）", url: "https://note.com/ase_lab_/n/nc02d63dab0a2" }
@@ -423,9 +427,11 @@ window.SITE_DATA = {
      7. 外部リンク
      ------------------------------------------------------------------ */
   links: [
-    { label: "researchmap", url: "https://researchmap.jp/Tatsuki_Nakatani" },
-    { label: "ORCID",       url: "https://orcid.org/0009-0008-1385-2778" },
-    { label: "J-GLOBAL",    url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601013543771460" }
+    { label: "researchmap", icon: "images/icons/researchmap.svg", url: "https://researchmap.jp/Tatsuki_Nakatani" },
+    { label: "ORCID", icon: "images/icons/orcid.svg", url: "https://orcid.org/0009-0008-1385-2778" },
+    { label: "J-GLOBAL", icon: "images/icons/jglobal.svg", url: "https://jglobal.jst.go.jp/detail?JGLOBAL_ID=202601013543771460" },
+    { label: "Google Scholar", icon: "images/icons/google-scholar.svg", url: "https://scholar.google.com/citations?user=5hCRTDAAAAAJ&hl=en" },
+    { label: "ResearchGate", icon: "images/icons/researchgate.svg", url: "https://www.researchgate.net/profile/Tatsuki-Nakatani?ev=hdr_xprf" }
   ]
 };
 
@@ -445,7 +451,7 @@ window.SITE_DATA = {
   var SECTIONS = [
     { id: "education",  ja: "学歴",         en: "Education" },
     {
-      id: "research", ja: "研究テーマ", en: "Research",
+      id: "research", ja: "研究", en: "Research",
       children: [
         { id: "theme-brazing", ja: "複合材料の接合に関する研究" },
         { id: "theme-metal-am", ja: "金属3D積層造形に関する研究" },
@@ -454,7 +460,7 @@ window.SITE_DATA = {
       ]
     },
     { id: "projects",   ja: "プロジェクト",  en: "Projects" },
-    { id: "experience", ja: "職歴",         en: "Experience" },
+    { id: "experience", ja: "仕事",         en: "Experience" },
     { id: "contact",    ja: "外部リンク",    en: "Links" }
   ];
 
@@ -509,12 +515,19 @@ window.SITE_DATA = {
   }
 
   /* ---------- 業績1件分 ---------- */
+  var pubCounter = 0;
+
+  function citationText(p) {
+    var venue = String(p.venue || p.program || "")
+      .replace(/\s*\/\s*Impact Factor.*$/i, "")
+      .trim();
+    var parts = [p.authors, p.title, venue].filter(Boolean);
+    return parts.join("，");
+  }
+
   function pubItem(p) {
     var lines = [p.authors, p.venue, p.program, p.role, p.number]
       .filter(Boolean).map(esc).join("<br>");
-    var link = p.url
-      ? '<a class="pub__link" href="' + esc(p.url) + '" target="_blank" rel="noopener">リンクを開く</a>'
-      : "";
     var badges = Array.isArray(p.badges) && p.badges.length
       ? '<div class="pub__badges">' + p.badges.map(function (b) {
           return '<span class="pub__badge">' + esc(b) + '</span>';
@@ -524,13 +537,26 @@ window.SITE_DATA = {
       ? '<details class="pub__details"><summary class="pub__title pub__summary">' + esc(p.title) + '</summary>' +
         '<div class="pub__abstract"><span class="pub__abstract-label">Abstract</span><p>' + esc(p.abstract) + '</p></div></details>'
       : '<p class="pub__title">' + esc(p.title) + '</p>';
+
+    var citeId = "pub-citation-" + (++pubCounter);
+    var actions = '<div class="pub__actions">' +
+      (p.url ? '<a class="pub__action-badge" href="' + esc(p.url) + '" target="_blank" rel="noopener">URL</a>' : '') +
+      (p.authors ? '<button class="pub__action-badge pub__bib-toggle" type="button" aria-expanded="false" aria-controls="' + citeId + '">BibTex</button>' : '') +
+      '</div>';
+    var citePanel = p.authors
+      ? '<div class="pub__cite-panel" id="' + citeId + '" hidden>' +
+          '<div class="pub__cite-head"><span>論文情報</span><button class="pub__copy" type="button" data-copy-target="' + citeId + '-text">コピー</button></div>' +
+          '<code class="pub__cite-text" id="' + citeId + '-text">' + esc(citationText(p)) + '</code>' +
+        '</div>'
+      : '';
+
     return '<li class="pub">' +
       '<span class="pub__year">' + esc(p.period || p.year) + "</span>" +
       "<div>" +
         titleBlock +
         badges +
         (lines ? '<p class="pub__meta">' + lines + "</p>" : "") +
-        link +
+        actions + citePanel +
       "</div></li>";
   }
 
@@ -564,15 +590,21 @@ window.SITE_DATA = {
       var mine = all.filter(function (p) {
         return Array.isArray(p.themes) && p.themes.indexOf(t.id) !== -1;
       });
-
       var body = renderPublicationGroups(mine);
+      var keywords = Array.isArray(t.keywords) && t.keywords.length
+        ? '<p class="theme__keywords"><span>Keyword：</span>' + t.keywords.map(esc).join(' / ') + '</p>'
+        : '';
 
-      return '<article class="theme" id="theme-' + esc(t.id) + '">' +
-        (t.period ? '<span class="theme__period">' + esc(t.period) + "</span>" : "") +
-        '<h3 class="theme__title">' + esc(t.title) + "</h3>" +
-        (t.description ? '<p class="theme__desc">' + esc(t.description) + "</p>" : "") +
-        body +
-      "</article>";
+      return '<details class="theme" id="theme-' + esc(t.id) + '">' +
+        '<summary class="theme__summary">' +
+          (t.period ? '<span class="theme__period">' + esc(t.period) + '</span>' : '') +
+          '<span class="theme__title">' + esc(t.title) + '</span>' +
+        '</summary>' +
+        '<div class="theme__content">' +
+          (t.description ? '<p class="theme__desc">' + esc(t.description) + '</p>' : '') +
+          keywords + body +
+        '</div>' +
+      '</details>';
     }).join("");
   }
 
@@ -626,9 +658,84 @@ window.SITE_DATA = {
     box.innerHTML = (D.links || [])
       .filter(function (l) { return l.url; })
       .map(function (l) {
+        var icon = l.icon ? '<img class="link__icon" src="' + esc(l.icon) + '" alt="" aria-hidden="true">' : '';
         return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
-          esc(l.label) + "</a></li>";
+          icon + '<span>' + esc(l.label) + "</span></a></li>";
       }).join("");
+  }
+
+  /* ---------- モバイル研究アコーディオン ---------- */
+  function initThemeAccordions() {
+    var mq = window.matchMedia("(min-width: 1024px)");
+    var details = Array.prototype.slice.call(document.querySelectorAll("details.theme"));
+
+    function sync() {
+      details.forEach(function (d) {
+        d.open = mq.matches;
+      });
+    }
+    sync();
+    if (mq.addEventListener) mq.addEventListener("change", sync);
+    else if (mq.addListener) mq.addListener(sync);
+
+    document.addEventListener("click", function (e) {
+      var summary = e.target.closest && e.target.closest(".theme__summary");
+      if (summary && mq.matches) e.preventDefault();
+    });
+
+    function openHashTheme() {
+      if (mq.matches || !location.hash) return;
+      var target = document.querySelector(location.hash);
+      if (target && target.matches("details.theme")) target.open = true;
+    }
+    window.addEventListener("hashchange", openHashTheme);
+    openHashTheme();
+  }
+
+  /* ---------- BibTeXアコーディオンとコピー ---------- */
+  function initPublicationActions() {
+    document.addEventListener("click", function (e) {
+      var toggle = e.target.closest && e.target.closest(".pub__bib-toggle");
+      if (toggle) {
+        var panel = document.getElementById(toggle.getAttribute("aria-controls"));
+        if (!panel) return;
+        var willOpen = panel.hidden;
+        panel.hidden = !willOpen;
+        toggle.setAttribute("aria-expanded", willOpen ? "true" : "false");
+        toggle.classList.toggle("is-open", willOpen);
+        return;
+      }
+
+      var copy = e.target.closest && e.target.closest(".pub__copy");
+      if (!copy) return;
+      var target = document.getElementById(copy.getAttribute("data-copy-target"));
+      if (!target) return;
+      var text = target.textContent || "";
+      function done() {
+        var old = copy.textContent;
+        copy.textContent = "コピー済み";
+        setTimeout(function () { copy.textContent = old; }, 1200);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(function () {
+          fallbackCopy(text); done();
+        });
+      } else {
+        fallbackCopy(text); done();
+      }
+    });
+  }
+
+  function fallbackCopy(text) {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand("copy"); } catch (e) {}
+    document.body.removeChild(ta);
   }
 
   /* ---------- 現在位置に応じてナビを強調 ---------- */
@@ -663,6 +770,8 @@ window.SITE_DATA = {
   renderTrack("educationList", D.education);
   renderTrack("experienceList", D.experience);
   renderLinks();
+  initThemeAccordions();
+  initPublicationActions();
   initScrollSpy();
 })();
 

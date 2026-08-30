@@ -533,3 +533,188 @@ a{ color:var(--navy-700); }
   line-height:1.55;
   letter-spacing:.03em;
 }
+
+
+/* =========================================================
+   2026-08-30 update 4: publication actions / keywords / icons / mobile header
+   ========================================================= */
+
+/* 研究テーマを details に変更。PCでは従来と同じ常時展開表示 */
+details.theme{
+  display:block;
+}
+.theme__summary{
+  position:relative;
+  display:block;
+  list-style:none;
+}
+.theme__summary::-webkit-details-marker{ display:none; }
+.theme__summary::marker{ content:""; }
+.theme__title{ display:block; }
+.theme__content{ display:block; }
+.theme__keywords{
+  margin:-14px 0 26px;
+  font-size:12.5px;
+  line-height:1.7;
+  color:var(--navy-400);
+}
+.theme__keywords span{
+  font-weight:700;
+  color:var(--navy-700);
+}
+
+/* URL / BibTeX バッジ */
+.pub__actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:9px;
+}
+.pub__action-badge{
+  appearance:none;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:24px;
+  padding:2px 9px;
+  border:1px solid var(--rule);
+  border-radius:999px;
+  background:#fff;
+  color:var(--navy-700);
+  font:inherit;
+  font-size:10.5px;
+  font-weight:700;
+  line-height:1.4;
+  text-decoration:none;
+  cursor:pointer;
+}
+.pub__action-badge:hover,
+.pub__action-badge.is-open{
+  border-color:var(--navy-700);
+  background:var(--navy-050);
+}
+.pub__cite-panel{
+  margin-top:8px;
+  padding:12px 14px;
+  border:1px solid var(--rule);
+  border-radius:5px;
+  background:var(--paper);
+}
+.pub__cite-panel[hidden]{ display:none; }
+.pub__cite-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:8px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:var(--navy-400);
+}
+.pub__copy{
+  appearance:none;
+  border:1px solid var(--rule);
+  border-radius:4px;
+  background:#fff;
+  color:var(--navy-700);
+  padding:4px 9px;
+  font:inherit;
+  font-size:11px;
+  cursor:pointer;
+}
+.pub__copy:hover{ border-color:var(--navy-700); }
+.pub__cite-text{
+  display:block;
+  white-space:normal;
+  overflow-wrap:anywhere;
+  font-family:var(--font-body);
+  font-size:12.5px;
+  line-height:1.75;
+  color:var(--ink-muted);
+}
+/* 旧「リンクを開く」は使わない */
+.pub__link{ display:none; }
+
+/* 外部リンクアイコン */
+.links a{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+}
+.link__icon{
+  width:24px;
+  height:24px;
+  flex:0 0 24px;
+  object-fit:contain;
+}
+
+/* PCでは研究アコーディオンの操作感を見せず、従来表示を維持 */
+@media (min-width:1024px){
+  .theme__summary{ cursor:default; }
+}
+
+/* スマートフォン/タブレットのみ：上部プロフィールを隠し、タブを固定 */
+@media (max-width:1023px){
+  .rail{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 1px 0 rgba(255,255,255,.08), 0 4px 14px rgba(11,27,51,.12);
+  }
+  .rail__id{ display:none; }
+  .rail__nav{
+    padding:8px 10px;
+    background:var(--navy-900);
+  }
+  .rail__nav a{
+    padding:8px 10px;
+    font-size:12.5px;
+  }
+  /* 固定ヘッダーを簡潔に保つため、研究の子リンクは本文のアコーディオンへ集約 */
+  .rail__subnav{ display:none; }
+
+  details.theme{
+    margin-top:18px;
+    padding-left:0;
+    border-left:0;
+    border:1px solid var(--rule);
+    border-radius:6px;
+    background:#fff;
+    overflow:hidden;
+  }
+  .theme__summary{
+    padding:15px 42px 15px 16px;
+    cursor:pointer;
+    background:#fff;
+  }
+  .theme__summary::after{
+    content:"＋";
+    position:absolute;
+    right:16px;
+    top:50%;
+    transform:translateY(-50%);
+    color:var(--navy-400);
+    font-size:20px;
+    font-weight:400;
+  }
+  details.theme[open] .theme__summary::after{ content:"−"; }
+  .theme__period{
+    margin-bottom:6px;
+  }
+  .theme__title{
+    margin:0;
+    padding-right:0;
+    font-size:17px;
+  }
+  .theme__content{
+    padding:0 16px 16px;
+    border-top:1px solid var(--navy-050);
+  }
+  .theme__desc{
+    margin:14px 0 16px;
+  }
+  .theme__keywords{
+    margin:0 0 22px;
+  }
+}
