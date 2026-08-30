@@ -863,3 +863,196 @@ details.theme{
     border-bottom:1px solid var(--rule);
   }
 }
+
+
+/* =========================================================
+   2026-08-30 update 6: section icons / bilingual education /
+   independent project expansion / SP carousel / contact
+   ========================================================= */
+
+/* セクション見出しアイコン */
+.sec__title-line{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+.sec__icon{
+  width:27px;
+  height:27px;
+  object-fit:contain;
+  flex:0 0 27px;
+}
+.sec__heading-row{
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:8px;
+}
+.sec__heading-row .sec__title{ margin-bottom:0; }
+
+/* 学歴 JP / EN */
+.education-lang{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  padding-bottom:4px;
+  white-space:nowrap;
+}
+.education-lang__btn{
+  appearance:none;
+  border:0;
+  border-bottom:1px solid transparent;
+  padding:2px 1px;
+  background:transparent;
+  color:var(--ink-muted);
+  font:inherit;
+  font-size:12px;
+  font-weight:500;
+  cursor:pointer;
+}
+.education-lang__btn:hover{ color:var(--navy-900); }
+.education-lang__btn.is-active{
+  color:var(--navy-700);
+  border-bottom-color:var(--navy-700);
+  font-weight:700;
+}
+.education-lang__sep{
+  color:var(--rule);
+  font-size:11px;
+}
+.education-lang-text--en{ display:none; }
+#education.is-en .education-lang-text--ja{ display:none; }
+#education.is-en .education-lang-text--en{ display:block; }
+#education.is-en span.education-lang-text--en{ display:inline; }
+
+/* 連絡先 */
+.contact__mail{
+  margin:8px 0 0;
+  padding:16px 18px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+  font-size:14px;
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+
+/* プロジェクト：閉じているカードは同じ高さ、開いたカードだけ伸ばす */
+.cards{ grid-auto-rows:auto; }
+.card{ height:auto; }
+.card__body{ min-height:0; }
+
+.project-carousel{ position:relative; }
+.project-nav,
+.project-counter{ display:none; }
+
+@media (min-width:768px){
+  .card:not(.is-expanded){
+    height:245px;
+  }
+  .card.is-expanded{
+    height:auto;
+    min-height:245px;
+    align-items:start;
+  }
+  .card__figure{
+    align-self:center;
+  }
+  .card__body{
+    overflow:visible;
+  }
+}
+
+/* SP版：プロジェクトを1枚ずつ表示 */
+@media (max-width:767px){
+  #projects{
+    padding-top:48px;
+  }
+  .project-carousel{
+    padding:0 35px 24px;
+  }
+  .project-carousel .cards{
+    display:block;
+    margin-top:6px;
+  }
+  .project-carousel .card{
+    display:none;
+    width:100%;
+    height:auto;
+    min-height:0;
+    grid-template-columns:1fr;
+    align-items:stretch;
+  }
+  .project-carousel .card.is-carousel-active{
+    display:flex;
+    flex-direction:column;
+  }
+  .project-carousel .card__figure{
+    width:100%;
+    aspect-ratio:4/3;
+    border-right:0;
+    border-bottom:1px solid var(--rule);
+  }
+  .project-carousel .card__body{
+    padding:15px 16px 16px;
+  }
+  .project-carousel .card__title{
+    margin-bottom:6px;
+    font-size:16px;
+    line-height:1.55;
+  }
+  .project-carousel .card__details{
+    margin-top:8px;
+  }
+  .project-carousel .card__details summary{
+    padding:7px 0;
+  }
+  .project-carousel .card__links{
+    padding-top:8px;
+    margin-top:8px;
+    gap:5px 14px;
+  }
+  .project-nav{
+    display:flex;
+    position:absolute;
+    top:42%;
+    z-index:5;
+    width:30px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    border:0;
+    background:transparent;
+    color:var(--navy-700);
+    font-size:20px;
+    cursor:pointer;
+  }
+  .project-nav--prev{ left:0; }
+  .project-nav--next{ right:0; }
+  .project-nav:disabled{
+    opacity:.22;
+    cursor:default;
+  }
+  .project-counter{
+    display:block;
+    margin:9px 0 0;
+    text-align:center;
+    color:var(--ink-muted);
+    font-size:11px;
+    letter-spacing:.08em;
+  }
+}
+
+@media (max-width:480px){
+  .sec__icon{
+    width:24px;
+    height:24px;
+    flex-basis:24px;
+  }
+  .sec__heading-row{
+    gap:10px;
+  }
+  .education-lang{
+    padding-bottom:3px;
+  }
+}

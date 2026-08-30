@@ -53,32 +53,50 @@
 
     <!-- ---- 学歴 ---- -->
     <section class="sec" id="education">
-      <h2 class="sec__title"><span class="sec__eyebrow">Education</span>学歴</h2>
+      <div class="sec__heading-row">
+        <h2 class="sec__title"><span class="sec__eyebrow">Education</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/school.png" alt="">学歴</span></h2>
+        <div class="education-lang" role="group" aria-label="学歴の表示言語">
+          <button class="education-lang__btn is-active" type="button" data-education-lang="ja" aria-pressed="true">JP</button>
+          <span class="education-lang__sep">/</span>
+          <button class="education-lang__btn" type="button" data-education-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </div>
       <ol class="track" id="educationList"></ol>
     </section>
 
     <!-- ---- 研究テーマと業績 ---- -->
     <section class="sec" id="research">
-      <h2 class="sec__title"><span class="sec__eyebrow">Research</span>研究</h2>
+      <h2 class="sec__title"><span class="sec__eyebrow">Research</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/microscope.png" alt="">研究</span></h2>
       <div id="themes"></div>
     </section>
 
     <!-- ---- プロジェクト ---- -->
     <section class="sec" id="projects">
-      <h2 class="sec__title"><span class="sec__eyebrow">Projects</span>プロジェクト</h2>
-      <div class="cards" id="projectList"></div>
+      <h2 class="sec__title"><span class="sec__eyebrow">Projects</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/folders.png" alt="">プロジェクト</span></h2>
+      <div class="project-carousel">
+        <button class="project-nav project-nav--prev" id="projectPrev" type="button" aria-label="前のプロジェクト">◀</button>
+        <div class="cards" id="projectList"></div>
+        <button class="project-nav project-nav--next" id="projectNext" type="button" aria-label="次のプロジェクト">▶</button>
+        <p class="project-counter" id="projectCounter" aria-live="polite"></p>
+      </div>
     </section>
 
     <!-- ---- 職歴 ---- -->
     <section class="sec" id="experience">
-      <h2 class="sec__title"><span class="sec__eyebrow">Experience</span>仕事</h2>
+      <h2 class="sec__title"><span class="sec__eyebrow">Experience</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/briefcase.png" alt="">仕事</span></h2>
       <ol class="track" id="experienceList"></ol>
     </section>
 
-    <!-- ---- リンクと連絡先 ---- -->
-    <section class="sec" id="contact">
-      <h2 class="sec__title"><span class="sec__eyebrow">Links</span>外部リンク</h2>
+    <!-- ---- 外部リンク ---- -->
+    <section class="sec" id="links">
+      <h2 class="sec__title"><span class="sec__eyebrow">Links</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/link.png" alt="">外部リンク</span></h2>
       <ul class="links" id="linkList"></ul>
+    </section>
+
+    <!-- ---- 連絡先 ---- -->
+    <section class="sec" id="contact">
+      <h2 class="sec__title"><span class="sec__eyebrow">Contact</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/user-share.png" alt="">連絡先</span></h2>
+      <p class="contact__mail" data-bind="contactEmail"></p>
     </section>
   </main>
 </div>
@@ -102,6 +120,7 @@ window.SITE_DATA = {
     nameEn: "Tatsuki Nakatani",
     affiliation: "東京科学大学 工学院 機械系\nエンジニアリングデザインコース 博士後期課程",
     lead: "研究業績や活動歴を整理する個人HPです。",
+    contactEmail: "nakatani.t.55c9［at］m.isct.ac.jp"
   },
 
   /* ------------------------------------------------------------------
@@ -224,20 +243,6 @@ window.SITE_DATA = {
       type: "grant",
       themes: ["brazing"],
       url: "https://www.ishifuku-kinzoku.co.jp/topics/2025/grant.html"
-    },
-    {
-      period: "2025 —",
-      title: "東京工業大学つばめ博士学生奨学金（特別奨学金）",
-      type: "award",
-      themes: ["brazing"],
-      url: ""
-    },
-    {
-      year: 2025,
-      title: "日本学生支援機構 第一種奨学金 特に優れた業績による返還免除（修士課程）",
-      type: "award",
-      themes: ["brazing"],
-      url: ""
     },
 
     /* ---- 宇宙政策 ---- */
@@ -375,7 +380,7 @@ window.SITE_DATA = {
       image: "images/researchimage.jpg",
       links: [
         { label: "ASE-Lab 公式サイト", url: "https://www.ase-lab.space/?no-ovl=t" },
-        { label: "ASE-Lab（note）", url: "https://note.com/ase_lab_/n/nc02d63dab0a2" }
+        { label: "インタビュー記事", url: "https://note.com/ase_lab_/n/nc02d63dab0a2" }
       ]
     }
   ],
@@ -386,27 +391,43 @@ window.SITE_DATA = {
   education: [
     {
       period: "2025年4月 — 現在",
+      periodEn: "Apr. 2025 — Present",
       institution: "東京科学大学",
+      institutionEn: "Institute of Science Tokyo",
       program: "工学院 機械系 エンジニアリングデザインコース 博士後期課程",
-      degree: ""
+      programEn: "School of Engineering, Department of Mechanical Engineering, Graduate Major in Engineering Sciences and Design, Doctoral Program",
+      degree: "",
+      degreeEn: ""
     },
     {
       period: "2023年4月 — 2025年3月",
+      periodEn: "Apr. 2023 — Mar. 2025",
       institution: "東京工業大学",
+      institutionEn: "Tokyo Institute of Technology",
       program: "工学院 機械系 エンジニアリングデザインコース 修士課程",
-      degree: "修士（工学）"
+      programEn: "School of Engineering, Department of Mechanical Engineering, Graduate Major in Engineering Sciences and Design, Master’s Program",
+      degree: "修士（工学）",
+      degreeEn: "Master of Engineering"
     },
     {
       period: "2020年4月 — 2023年3月",
+      periodEn: "Apr. 2020 — Mar. 2023",
       institution: "電気通信大学",
+      institutionEn: "The University of Electro-Communications",
       program: "情報理工学域 Ⅲ類 機械知能システム工学科 学士課程",
-      degree: "学士（工学）"
+      programEn: "School of Informatics and Engineering, Cluster III (Fundamental Science and Engineering), Mechanical Systems Program",
+      degree: "学士（工学）",
+      degreeEn: "Bachelor of Engineering"
     },
     {
       period: "2015年4月 — 2020年3月",
+      periodEn: "Apr. 2015 — Mar. 2020",
       institution: "茨城工業高等専門学校",
+      institutionEn: "National Institute of Technology (KOSEN), Ibaraki College",
       program: "機械システム工学科",
-      degree: "準学士（工学）"
+      programEn: "Department of Mechanical Systems Engineering",
+      degree: "準学士（工学）",
+      degreeEn: "Associate Degree in Engineering"
     }
   ],
 
@@ -469,7 +490,8 @@ window.SITE_DATA = {
     },
     { id: "projects",   ja: "プロジェクト",  en: "Projects" },
     { id: "experience", ja: "仕事",         en: "Experience" },
-    { id: "contact",    ja: "外部リンク",    en: "Links" }
+    { id: "links",      ja: "外部リンク",    en: "Links" },
+    { id: "contact",    ja: "連絡先",        en: "Contact" }
   ];
 
   /* 業績種別の表示名と並び順 */
@@ -497,6 +519,7 @@ window.SITE_DATA = {
       nameEn: P.nameEn,
       affiliation: P.affiliation,
       lead: P.lead,
+      contactEmail: P.contactEmail,
       year: new Date().getFullYear()
     };
     Object.keys(map).forEach(function (key) {
@@ -671,11 +694,19 @@ window.SITE_DATA = {
     box.innerHTML = (items || []).map(function (it) {
       if (it.institution) {
         return '<li class="job education-item">' +
-          '<span class="job__period">' + esc(it.period) + "</span>" +
+          '<span class="job__period education-lang-text education-lang-text--ja">' + esc(it.period) + "</span>" +
+          '<span class="job__period education-lang-text education-lang-text--en">' + esc(it.periodEn || it.period) + "</span>" +
           '<div class="education-item__body">' +
-            '<p class="job__role education-item__institution">' + esc(it.institution) + "</p>" +
-            (it.program ? '<p class="education-item__program">' + esc(it.program) + "</p>" : "") +
-            (it.degree ? '<p class="education-item__degree">' + esc(it.degree) + "</p>" : "") +
+            '<div class="education-lang-text education-lang-text--ja">' +
+              '<p class="job__role education-item__institution">' + esc(it.institution) + "</p>" +
+              (it.program ? '<p class="education-item__program">' + esc(it.program) + "</p>" : "") +
+              (it.degree ? '<p class="education-item__degree">' + esc(it.degree) + "</p>" : "") +
+            '</div>' +
+            '<div class="education-lang-text education-lang-text--en">' +
+              '<p class="job__role education-item__institution">' + esc(it.institutionEn || it.institution) + "</p>" +
+              (it.programEn ? '<p class="education-item__program">' + esc(it.programEn) + "</p>" : "") +
+              (it.degreeEn ? '<p class="education-item__degree">' + esc(it.degreeEn) + "</p>" : "") +
+            '</div>' +
           '</div></li>';
       }
       return '<li class="job">' +
@@ -697,6 +728,71 @@ window.SITE_DATA = {
         return '<li><a href="' + esc(l.url) + '" target="_blank" rel="noopener">' +
           icon + '<span>' + esc(l.label) + "</span></a></li>";
       }).join("");
+  }
+
+  /* ---------- 学歴 JP / EN 切り替え ---------- */
+  function initEducationLanguage() {
+    var section = byId("education");
+    if (!section) return;
+    var buttons = Array.prototype.slice.call(section.querySelectorAll("[data-education-lang]"));
+    buttons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        var lang = btn.getAttribute("data-education-lang") === "en" ? "en" : "ja";
+        section.classList.toggle("is-en", lang === "en");
+        buttons.forEach(function (b) {
+          var active = b.getAttribute("data-education-lang") === lang;
+          b.classList.toggle("is-active", active);
+          b.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+      });
+    });
+  }
+
+  /* ---------- プロジェクトの独立伸縮 ---------- */
+  function initProjectDetails() {
+    document.querySelectorAll(".card__details").forEach(function (d) {
+      d.addEventListener("toggle", function () {
+        var card = d.closest(".card");
+        if (card) card.classList.toggle("is-expanded", d.open);
+      });
+    });
+  }
+
+  /* ---------- SP版プロジェクトカルーセル ---------- */
+  function initProjectCarousel() {
+    var box = byId("projectList");
+    var prev = byId("projectPrev");
+    var next = byId("projectNext");
+    var counter = byId("projectCounter");
+    if (!box || !prev || !next) return;
+    var cards = Array.prototype.slice.call(box.querySelectorAll(".card"));
+    if (!cards.length) return;
+    var index = 0;
+
+    function show(i) {
+      index = Math.max(0, Math.min(cards.length - 1, i));
+      cards.forEach(function (card, n) {
+        card.classList.toggle("is-carousel-active", n === index);
+      });
+      prev.disabled = index === 0;
+      next.disabled = index === cards.length - 1;
+      if (counter) counter.textContent = (index + 1) + " / " + cards.length;
+    }
+    prev.addEventListener("click", function () { show(index - 1); });
+    next.addEventListener("click", function () { show(index + 1); });
+
+    var startX = null;
+    box.addEventListener("touchstart", function (e) {
+      startX = e.touches && e.touches[0] ? e.touches[0].clientX : null;
+    }, { passive: true });
+    box.addEventListener("touchend", function (e) {
+      if (startX == null || !e.changedTouches || !e.changedTouches[0]) return;
+      var dx = e.changedTouches[0].clientX - startX;
+      startX = null;
+      if (Math.abs(dx) < 50) return;
+      if (dx < 0) show(index + 1); else show(index - 1);
+    }, { passive: true });
+    show(0);
   }
 
   /* ---------- モバイル研究アコーディオン ---------- */
@@ -805,6 +901,9 @@ window.SITE_DATA = {
   renderTrack("educationList", D.education);
   renderTrack("experienceList", D.experience);
   renderLinks();
+  initEducationLanguage();
+  initProjectDetails();
+  initProjectCarousel();
   initThemeAccordions();
   initPublicationActions();
   initScrollSpy();
