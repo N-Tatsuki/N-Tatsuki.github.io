@@ -1142,3 +1142,144 @@ details.theme{
     transform:translateY(-50%);
   }
 }
+
+
+/* =========================================================
+   2026-08-31 update 8: OGP / rounded cards / contact order /
+   equal-height SP carousel with neighboring-card preview
+   ========================================================= */
+
+/* プロジェクトカードの角丸を少し強くする */
+.card{
+  border-radius:12px;
+}
+.card__figure{
+  overflow:hidden;
+}
+
+/* 連絡先はメールと所在地を一つの情報ブロックとして表示 */
+.contact__box{
+  margin-top:8px;
+  padding:15px 18px;
+  border-top:1px solid var(--rule);
+  border-bottom:1px solid var(--rule);
+}
+.contact__mail,
+.contact__address{
+  margin:0;
+  padding:0;
+  border:0;
+  font-size:14px;
+  line-height:1.8;
+}
+.contact__mail{ color:var(--ink); }
+.contact__address{
+  margin-top:5px;
+  color:var(--ink-muted);
+  white-space:pre-wrap;
+}
+
+/* PC版は従来どおり縦並び。画像は常に上揃え。 */
+@media (min-width:768px){
+  .project-viewport{ overflow:visible; }
+  .project-carousel .cards{
+    transform:none !important;
+  }
+  .project-carousel .card{
+    opacity:1;
+  }
+  .card__figure{
+    align-self:start !important;
+  }
+}
+
+/* SP版：中央カード＋左右に半透明の隣接カードを見せる横スライドUI */
+@media (max-width:767px){
+  .project-carousel{
+    --project-card-min-height:520px;
+    position:relative;
+    padding:0 0 24px;
+  }
+  .project-viewport{
+    position:relative;
+    overflow:hidden;
+    width:100%;
+    padding:8px 0 12px;
+    touch-action:pan-y;
+  }
+  .project-carousel .cards{
+    display:flex !important;
+    align-items:flex-start;
+    gap:12px;
+    width:max-content;
+    margin:0;
+    padding:0;
+    transition:transform .42s cubic-bezier(.22,.61,.36,1);
+    will-change:transform;
+  }
+  .project-carousel .cards.is-no-transition{
+    transition:none !important;
+  }
+  .project-carousel .card,
+  .project-carousel .card.is-carousel-active{
+    display:flex !important;
+    flex:0 0 calc(100vw - 92px);
+    width:calc(100vw - 92px);
+    min-height:var(--project-card-min-height);
+    height:auto;
+    flex-direction:column;
+    opacity:.30;
+    transition:opacity .28s ease, box-shadow .28s ease;
+    pointer-events:none;
+  }
+  .project-carousel .card.is-carousel-active{
+    opacity:1;
+    pointer-events:auto;
+    box-shadow:0 10px 28px rgba(11,27,51,.16);
+  }
+  .project-carousel .card.is-carousel-neighbor{
+    opacity:.38;
+  }
+  .project-carousel .card__figure{
+    width:100%;
+    aspect-ratio:4/3;
+    border-right:0;
+    border-bottom:1px solid var(--rule);
+    flex:0 0 auto;
+  }
+  .project-carousel .card__body{
+    flex:1 1 auto;
+    padding:15px 16px 16px;
+  }
+  .project-carousel .card__links{
+    margin-top:auto;
+  }
+  .project-nav{
+    top:calc(8px + (var(--project-card-min-height, 420px) / 2)) !important;
+    transform:translateY(-50%);
+    z-index:8;
+    width:36px;
+    height:52px;
+    border-radius:999px;
+    background:rgba(252,253,254,.72);
+    box-shadow:0 2px 10px rgba(11,27,51,.08);
+    backdrop-filter:blur(3px);
+    -webkit-backdrop-filter:blur(3px);
+  }
+  .project-nav--prev{ left:4px; }
+  .project-nav--next{ right:4px; }
+  .project-nav:disabled{
+    opacity:.16;
+  }
+  .project-counter{
+    margin-top:2px;
+  }
+}
+
+@media (max-width:420px){
+  .project-carousel .card,
+  .project-carousel .card.is-carousel-active{
+    flex-basis:calc(100vw - 78px);
+    width:calc(100vw - 78px);
+  }
+}

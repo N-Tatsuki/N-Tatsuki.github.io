@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>中谷 樹 | 東京科学大学 博士後期課程</title>
-<meta name="description" content="研究業績や活動歴を整理する個人HPです。">
+<meta name="description" content="研究業績や活動歴をまとめた個人HPです。">
 
-<!-- OGP（SNSでリンクを共有したときの表示。URLと画像は公開後に書き換えてください） -->
+<!-- OGP / SNS共有カード -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="中谷 樹 | 東京科学大学 博士後期課程">
-<meta property="og:description" content="研究業績や活動歴を整理する個人HPです。">
+<meta property="og:site_name" content="中谷 樹 | Tatsuki Nakatani">
+<meta property="og:title" content="中谷 樹｜Tatsuki Nakatani">
+<meta property="og:description" content="研究業績や活動歴をまとめた個人HPです。">
 <meta property="og:url" content="https://n-tatsuki.github.io/">
-<meta property="og:image" content="https://n-tatsuki.github.io/images/spaceArch.jpg">
+<meta property="og:image" content="https://n-tatsuki.github.io/images/Cansat.webp">
+<meta property="og:image:secure_url" content="https://n-tatsuki.github.io/images/Cansat.webp">
+<meta property="og:image:type" content="image/webp">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:alt" content="CanSatプロジェクトの写真">
+<!-- WebP非対応クローラ向けの同一画像フォールバック -->
+<meta property="og:image" content="https://n-tatsuki.github.io/images/Cansat-og.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="中谷 樹｜Tatsuki Nakatani">
+<meta name="twitter:description" content="研究業績や活動歴をまとめた個人HPです。">
+<meta name="twitter:image" content="https://n-tatsuki.github.io/images/Cansat.webp">
+<meta name="twitter:image:alt" content="CanSatプロジェクトの写真">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +50,7 @@
     <nav class="rail__nav" id="railNav" aria-label="ページ内ナビゲーション"></nav>
 
     <p class="rail__foot">&copy; <span data-bind="year"></span> Tatsuki Nakatani</p>
-    <p class="rail__updated">最終更新日：2026年8月30日</p>
+    <p class="rail__updated">最終更新日：2026年8月31日</p>
   </header>
 
   <!-- ============ 本文 ============ -->
@@ -75,7 +89,9 @@
       <h2 class="sec__title"><span class="sec__eyebrow">Projects</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/folders.png" alt="">プロジェクト</span></h2>
       <div class="project-carousel">
         <button class="project-nav project-nav--prev" id="projectPrev" type="button" aria-label="前のプロジェクト">◀</button>
-        <div class="cards" id="projectList"></div>
+        <div class="project-viewport">
+          <div class="cards" id="projectList"></div>
+        </div>
         <button class="project-nav project-nav--next" id="projectNext" type="button" aria-label="次のプロジェクト">▶</button>
         <p class="project-counter" id="projectCounter" aria-live="polite"></p>
       </div>
@@ -87,16 +103,19 @@
       <ol class="track" id="experienceList"></ol>
     </section>
 
+    <!-- ---- 連絡先 ---- -->
+    <section class="sec" id="contact">
+      <h2 class="sec__title"><span class="sec__eyebrow">Contact</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/user-share.png" alt="">連絡先</span></h2>
+      <div class="contact__box">
+        <p class="contact__mail" data-bind="contactEmail"></p>
+        <p class="contact__address" data-bind="contactAddress"></p>
+      </div>
+    </section>
+
     <!-- ---- 外部リンク ---- -->
     <section class="sec" id="links">
       <h2 class="sec__title"><span class="sec__eyebrow">Links</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/link.png" alt="">外部リンク</span></h2>
       <ul class="links" id="linkList"></ul>
-    </section>
-
-    <!-- ---- 連絡先 ---- -->
-    <section class="sec" id="contact">
-      <h2 class="sec__title"><span class="sec__eyebrow">Contact</span><span class="sec__title-line"><img class="sec__icon" src="images/icons/user-share.png" alt="">連絡先</span></h2>
-      <p class="contact__mail" data-bind="contactEmail"></p>
     </section>
   </main>
 </div>
@@ -119,8 +138,9 @@ window.SITE_DATA = {
     nameJa: "中谷 樹",
     nameEn: "Tatsuki Nakatani",
     affiliation: "東京科学大学 工学院 機械系\nエンジニアリングデザインコース 博士後期課程",
-    lead: "研究業績や活動歴を整理する個人HPです。",
-    contactEmail: "nakatani.t.55c9［at］m.isct.ac.jp"
+    lead: "研究業績や活動歴をまとめた個人HPです。",
+    contactEmail: "nakatani.t.55c9［at］m.isct.ac.jp",
+    contactAddress: "〒152-8550 東京都目黒区大岡山2-12-1  石川台1号館"
   },
 
   /* ------------------------------------------------------------------
@@ -133,7 +153,7 @@ window.SITE_DATA = {
       id: "brazing",
       period: "修士～博士課程",
       title: "複合材料の接合に関する研究",
-      description: "大型宇宙構造物建設のための軌道上での組み立てを想定し、炭素繊維複合材料の活性金属ろう付に関する研究を行っています。",
+      description: "炭素繊維複合材料の活性金属ろう付に関する研究開発を行っています。将来的には、大型宇宙構造物の建設に向けた軌道上組立への適用を目指しています。",
       keywords: ["C/C複合材料", "活性金属ろう付", "軌道上組立"],
       membership: "溶接学会（2024年4月 - 現在）"
     },
@@ -141,7 +161,7 @@ window.SITE_DATA = {
       id: "metal-am",
       period: "学士課程",
       title: "金属3D積層造形に関する研究",
-      description: "マシニングセンタによる摩擦肉盛法と3軸のＮＣ自動溶接機によるＷＡＡＭを組み合わせた三次元積層造形の研究を行いました。",
+      description: "マシニングセンタによる摩擦肉盛と3軸NC溶接機によるWAAMを組み合わせた三次元積層造形について研究しました。",
       keywords: ["金属積層造形", "WAAM", "摩擦肉盛"],
       membership: "精密工学会（2022年4月 - 2023年3月）"
     },
@@ -149,7 +169,7 @@ window.SITE_DATA = {
       id: "space-policy",
       period: "2021 〜 現在",
       title: "宇宙政策に関する研究",
-      description: "日本の宇宙政策に関する調査研究業務を行っています。企業からの委託や個人研究を通して、宇宙政策の在り方について理解を深めています。大学院での研究成果の産業利用に向けて視野を広げる意図もあります。",
+      description: "日本の国家宇宙戦略に関する調査研究に取り組んでいます。企業からの委託調査や自主研究、専門家とのネットワーキングを通じて宇宙政策への知見を深めるとともに、大学院での研究成果の産業応用を見据え、視野を広げることも目的としています。",
       keywords: ["宇宙政策", "宇宙産業", "軌道上サービス"],
       membership: "日本航空宇宙学会（2023年4月 - 現在）"
     },
@@ -157,7 +177,7 @@ window.SITE_DATA = {
       id: "inquiry",
       period: "2023 〜 現在",
       title: "学士課程の探究活動に関する研究",
-      description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）業務を担当しています。授業改善や教材開発を行っています。",
+      description: "東京科学大学リベラルアーツ教育院において、学士課程の探究活動を支援するプログラムのTA（ティーチング・アシスタント）を担当し、受講生の学修支援に加えて、授業改善や教材開発に取り組んでいます。",
       keywords: ["探究活動", "教養教育", "教材開発"]
     }
   ],
@@ -180,7 +200,7 @@ window.SITE_DATA = {
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
       venue: "Carbon, 121264（2026年1月） / Impact Factor 12.7（2026年8月30日時点）",
       badges: ["主著", "査読あり"],
-      abstract: "Carbon/Carbon (C/C) composites are expected to be used as space components due to their excellent specific strength and high heat resistance. This study investigates a reliable brazing technique for C/C composites, aimed at their application as beam members in lunar geodesic dome structures. To improve the wettability of pure gold filler metal and prevent its excessive penetration, the end surfaces of the carbon fibers and the graphite matrix were coated with tungsten trioxide and tungsten carbide. The coating process successfully formed a protective layer on both the carbon fibers and the matrix, facilitating effective gold wetting. In three-point bending tests of the brazed specimens, the average maximum flexural stress reached 48.5 MPa. The fracture occurred as a tensile failure accompanied by interlaminar shear. These results indicate that the joint strength was greater than the strength of the C/C composite base material. Microstructural analyses confirmed that tungsten coatings formed around the fibers. When the C/C composite was placed with an oblique carbon fiber orientation to the joining surface for use as a beam material, the gold filler penetrated along the carbon fiber at an oblique angle. Furthermore, the alternating fiber orientation of the composite contributed to stress redistribution during loading, enhancing joint strength. These findings demonstrate that tungsten-based coatings and fiber architecture are critical to improving the mechanical performance of brazed C/C composite joints.",
+      abstract: "炭素繊維複合材料の表面をWC・WO₃で改質することで、Auろう材のぬれ性向上と過剰な浸透の抑制を実現しました。さらに、月面ドーム基地の梁材への応用を見据え、接合面に対する炭素繊維の配向角度を設定し、接合試験を行いました。",
       type: "journal",
       themes: ["brazing"],
       url: "https://doi.org/10.1016/j.carbon.2026.121264"
@@ -191,6 +211,7 @@ window.SITE_DATA = {
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
       venue: "Brazing, High Temperature Brazing and Diffusion Bonding (LÖT 2025), 399, pp.37-44（2025年6月）",
       badges: ["主著"],
+      abstract: "炭素繊維を保護しながら繊維同士を接合することを目標に新たにAu-Ni-Wを開発しました。ドイツのアーヘンで開催された国際学会で発表を行いました。",
       type: "international",
       themes: ["brazing"],
       url: "https://doi.org/10.53192/LOET20250037"
@@ -270,6 +291,7 @@ window.SITE_DATA = {
       authors: "中谷 樹, 有吉 志満",
       venue: "第68回 宇宙科学技術連合講演会, 3L04（2024年11月）",
       badges: ["主著"],
+      abstract: "将来的に月面に核融合発電システムが設置されることを想定し、現在の国際動向をもとに技術面、法制度面など必要となる論点を明らかにしました。",
       type: "domestic",
       themes: ["space-policy"],
       url: "https://jxiv.jst.go.jp/index.php/jxiv/preprint/view/1772"
@@ -307,6 +329,7 @@ window.SITE_DATA = {
       authors: "中谷樹, 有吉志満",
       venue: "第56回ニュースペース研究会（2024年8月）",
       badges: ["主著", "招待あり"],
+      abstract: "宇宙空間での核融合エネルギー利用について考えるべく、有識者へ登壇を依頼し、ニュースペース研究会を開催しました。核融合ロケット研究者、宇宙法の研究者、核融合研究者の方々と共にディスカッションを行いました。",
       type: "domestic",
       themes: ["space-policy"],
       url: "https://ngsl.or.jp/news/meeting-56/"
@@ -344,7 +367,7 @@ window.SITE_DATA = {
       year: "2021",
       title: "第8回 宇宙建築賞 入賞「PortC」",
       description:
-        "宇宙建築学サークルに所属し、学生チームで宇宙建築コンペに挑戦しました。月面における宇宙港の建設構想を提案し、第8回宇宙建築賞で入賞しました。月面の景観を保全し、ロケット打ち上げをシンボルとする宇宙港を設計しました。本作品は第66回宇宙科学技術連合講演会（2022年11月）の企業展示にも出展し、宇宙建築学のアウトリーチ活動を行いました。",
+        "宇宙建築学サークルに所属し、学生チームで宇宙建築コンペに挑戦しました。月面の景観を保全しながら、ロケットの打ち上げを象徴的に見せる宇宙港を提案し、第8回宇宙建築賞に入賞しました。本作品は第66回宇宙科学技術連合講演会（2022年11月）の企業展示にも出展し、宇宙建築学のアウトリーチ活動にも取り組みました。",
       image: "images/spaceArch.jpg",
       links: [
         { label: "受賞作品ページ", url: "https://tnlabsa.wixsite.com/tnlab/%E7%AC%AC8%E5%9B%9E-%E5%84%AA%E7%A7%80%E4%BD%9C%E5%93%81" },
@@ -355,7 +378,7 @@ window.SITE_DATA = {
       year: "2023",
       title: "CanSat プロジェクト — ARLISS 2023 Best Mission Award 1st Place",
       description:
-        "小型宇宙機の技術実証を行うCanSatプロジェクトに授業の一環として取り組み、その後チームで自主的に国際大会ARLISSへ出場しました。月面クレータ内での水資源運搬を想定し、パイプラインを自動敷設するシステムを開発して技術実証を行い、Best Mission Award 1st Place を受賞しました。要求の異なる複数の設計要件を整理し、設計から加工までを自チームで完結させる過程で、技術面とプロジェクトマネジメントの両面を実践的に学びました。",
+        "授業の一環として小型模擬衛星CanSatの技術実証に取り組み、その後、チームで自主的に国際大会ARLISS（米国ネバダ州）へ出場しました。月面クレータ内での水資源輸送を想定し、パイプラインを自動敷設するシステムを開発・実証し、Best Mission Award 1st Placeを受賞しました。複数の設計要件を整理し、設計から加工までをチーム内で完結させる過程を通じて、技術開発とプロジェクトマネジメントの両面を実践的に学びました。",
       image: "images/Cansat.webp",
       links: [
         { label: "ARLISS（UNISEC）", url: "https://unisec.jp/archives/10330" }
@@ -365,7 +388,7 @@ window.SITE_DATA = {
       year: "2023",
       title: "エンジニアリングデザインプロジェクト（EDP）",
       description:
-        "機械系エンジニアリングデザインコースにおけるPBL型授業です。パートナー企業から与えられた社会課題の解決を目指し、デザイン思考にもとづいてプロダクト開発に取り組みました。デザイン思考はユーザーへの共感を通じて潜在的なニーズを洞察する思考法であり、工学的な専門知識を社会実装につなげる過程に関心を持ち、参加しました。成果は一般向けの最終発表会で公開しています。",
+        "エンジニアリングデザインコースのPBL型授業において、パートナー企業から提示された社会課題の解決を目指し、デザイン思考に基づくプロダクト開発に取り組みました。ユーザーへの共感から潜在的なニーズを捉え、工学的な専門知識を社会実装へつなげるプロセスを実践しました。成果は一般向けの最終発表会で公開しました。",
       image: "images/EDP.webp",
       links: [
         { label: "プロジェクト紹介記事", url: "https://medium.com/titech-eng-and-design/2023%E5%B9%B4%E5%BA%A6edp-%E3%81%A4%E3%81%AA%E3%81%8C%E3%82%8B%E3%83%81%E3%82%A7%E3%82%A2-team-7-%E3%82%AB%E3%83%AA%E3%83%B3%E3%83%90-c5eef5f510cc" },
@@ -376,7 +399,7 @@ window.SITE_DATA = {
       year: "2022",
       title: "ASE-Lab／宇宙建築学ゼミ",
       description:
-        "大学院での研究に関わる知識を深めるとともに、宇宙建築分野の裾野を広げることを目的として、オンラインで「宇宙建築学ゼミ」を主宰しました。全国から集まった学生とともに、宇宙用材料や接合法といった材料工学の話題から月面都市の形成構想まで、幅広いテーマで継続的にゼミを運営しました。",
+        "大学院での研究に関連する知識を深めるとともに、宇宙建築分野の裾野を広げることを目的として、オンラインで「宇宙建築学ゼミ」を主宰しました。全国から集まった学生とともに、宇宙用材料や接合法などの材料工学から月面都市の形成構想まで幅広いテーマを扱い、約半年間にわたり継続的にゼミを運営しました。",
       image: "images/researchimage.jpg",
       links: [
         { label: "ASE-Lab 公式サイト", url: "https://www.ase-lab.space/?no-ovl=t" },
@@ -438,17 +461,17 @@ window.SITE_DATA = {
     {
       period: "2024年 — 現在",
       title: "Webサービス・ホームページ制作",
-      description: "アルバイト業務として、クライアント様から依頼を受けてWebサービスやホームページ制作を行っています。生成AIを用いた社内の業務効率化ツールの作成なども行っています。"
+      description: "アルバイト業務として、クライアントからの依頼に基づき、Webサービスやホームページの制作、生成AIを活用した社内業務効率化ツールの開発などを行っています。"
     },
     {
       period: "2023年 — 現在",
       title: "東京科学大学 ティーチングアシスタント",
-      description: "修士課程科目のエンジニアリングデザインプロジェクトのTA（2年間）、リベラルアーツプログラムの探究ワークショップ（3年間）を担当しました。他にも学士課程教養科目や理工系専門科目の授業補助も経験しました。"
+      description: "修士課程科目「エンジニアリングデザインプロジェクト」のTAを2年間、リベラルアーツプログラム「探究ワークショップ」のTAを3年間担当し、授業運営の補助や受講生の学修支援に取り組みました。このほか、学士課程の教養科目や理工系専門科目における授業補助も経験しています。"
     },
     {
       period: "2021年4月 — 現在",
       title: "一般社団法人 ニュースペース国際戦略研究所（NGSL） 学生研究員",
-      description: "国の宇宙政策に関する調査研究業務を行っています。宇宙開発の将来像を検討し、調査結果を政策提言へつなげる過程を通じて、長期的かつ広い視野を養いました。研究会の運営補助、WGチームへの参加、個人研究の学会発表を主な業務としています。"
+      description: "国の宇宙政策に関する調査研究に取り組んでいます。宇宙開発の将来像を検討し、その成果を政策提言へつなげる過程を通じて、長期的かつ俯瞰的な視点を培っています。調査研究、研究会の運営補助、WGへの参加を主な業務とし、自主研究については国内学会で発表しています。"
     }
   ],
 
@@ -490,8 +513,8 @@ window.SITE_DATA = {
     },
     { id: "projects",   ja: "プロジェクト",  en: "Projects" },
     { id: "experience", ja: "仕事",         en: "Experience" },
-    { id: "links",      ja: "外部リンク",    en: "Links" },
-    { id: "contact",    ja: "連絡先",        en: "Contact" }
+    { id: "contact",    ja: "連絡先",        en: "Contact" },
+    { id: "links",      ja: "外部リンク",    en: "Links" }
   ];
 
   /* 業績種別の表示名と並び順 */
@@ -520,6 +543,7 @@ window.SITE_DATA = {
       affiliation: P.affiliation,
       lead: P.lead,
       contactEmail: P.contactEmail,
+      contactAddress: P.contactAddress,
       year: new Date().getFullYear()
     };
     Object.keys(map).forEach(function (key) {
@@ -581,7 +605,7 @@ window.SITE_DATA = {
       : "";
     var titleBlock = p.abstract
       ? '<details class="pub__details"><summary class="pub__title pub__summary">' + esc(p.title) + '</summary>' +
-        '<div class="pub__abstract"><span class="pub__abstract-label">Abstract</span><p>' + esc(p.abstract) + '</p></div></details>'
+        '<div class="pub__abstract"><span class="pub__abstract-label">' + (/[^\x00-\x7F]/.test(String(p.abstract)) ? '概要' : 'Abstract') + '</span><p>' + esc(p.abstract) + '</p></div></details>'
       : '<p class="pub__title">' + esc(p.title) + '</p>';
 
     var citeId = "pub-citation-" + (++pubCounter);
@@ -767,78 +791,125 @@ window.SITE_DATA = {
   /* ---------- SP版プロジェクトカルーセル ---------- */
   function initProjectCarousel() {
     var carousel = document.querySelector(".project-carousel");
+    var viewport = carousel && carousel.querySelector(".project-viewport");
     var box = byId("projectList");
     var prev = byId("projectPrev");
     var next = byId("projectNext");
     var counter = byId("projectCounter");
-    if (!carousel || !box || !prev || !next) return;
+    if (!carousel || !viewport || !box || !prev || !next) return;
     var cards = Array.prototype.slice.call(box.querySelectorAll(".card"));
     if (!cards.length) return;
     var index = 0;
+    var resizeTimer = null;
 
     function isSP() {
       return window.matchMedia("(max-width: 767px)").matches;
     }
 
-    function activeCard() {
-      return cards[index] || null;
+    function closeInactiveDetails() {
+      cards.forEach(function (card, n) {
+        if (n === index) return;
+        var d = card.querySelector(".card__details");
+        if (d) d.open = false;
+      });
     }
 
-    function updateNavAnchor() {
+    function setCardStates() {
+      cards.forEach(function (card, n) {
+        card.classList.toggle("is-carousel-active", n === index);
+        card.classList.toggle("is-carousel-neighbor", Math.abs(n - index) === 1);
+        card.setAttribute("aria-hidden", isSP() && n !== index ? "true" : "false");
+      });
+    }
+
+    function slideToActive(animate) {
       if (!isSP()) {
-        carousel.style.removeProperty("--project-nav-top");
+        box.style.removeProperty("transform");
+        box.classList.remove("is-no-transition");
+        cards.forEach(function (card) {
+          card.classList.remove("is-carousel-active", "is-carousel-neighbor");
+          card.removeAttribute("aria-hidden");
+          card.style.removeProperty("min-height");
+        });
         return;
       }
-      var card = activeCard();
+      var card = cards[index];
       if (!card) return;
-      var details = card.querySelector(".card__details");
-      /* 展開中は、閉じていた時に記録した位置をそのまま使う */
-      if (details && details.open && carousel.style.getPropertyValue("--project-nav-top")) return;
-      var carouselRect = carousel.getBoundingClientRect();
-      var cardRect = card.getBoundingClientRect();
-      var center = cardRect.top - carouselRect.top + cardRect.height / 2;
-      carousel.style.setProperty("--project-nav-top", center + "px");
+      if (!animate) box.classList.add("is-no-transition");
+      else box.classList.remove("is-no-transition");
+      var target = card.offsetLeft + card.offsetWidth / 2 - viewport.clientWidth / 2;
+      box.style.transform = "translate3d(" + (-target) + "px,0,0)";
+      if (!animate) requestAnimationFrame(function () { box.classList.remove("is-no-transition"); });
     }
-    window.updateProjectNavAnchor = updateNavAnchor;
 
-    function show(i) {
-      index = Math.max(0, Math.min(cards.length - 1, i));
-      cards.forEach(function (card, n) {
-        var active = n === index;
-        card.classList.toggle("is-carousel-active", active);
-        /* 次のカードへ移動した時は閉じた状態から表示 */
-        if (!active) {
-          var d = card.querySelector(".card__details");
-          if (d) d.open = false;
-        }
+    function measureCollapsedCardHeight() {
+      if (!isSP()) {
+        carousel.style.removeProperty("--project-card-min-height");
+        return;
+      }
+      var openStates = cards.map(function (card) {
+        var d = card.querySelector(".card__details");
+        return !!(d && d.open);
       });
-      var currentDetails = activeCard() && activeCard().querySelector(".card__details");
-      if (currentDetails) currentDetails.open = false;
+      cards.forEach(function (card) {
+        var d = card.querySelector(".card__details");
+        if (d) d.open = false;
+      });
+      carousel.style.removeProperty("--project-card-min-height");
+      requestAnimationFrame(function () {
+        var max = 0;
+        cards.forEach(function (card) {
+          max = Math.max(max, card.getBoundingClientRect().height);
+        });
+        if (max) carousel.style.setProperty("--project-card-min-height", Math.ceil(max) + "px");
+        cards.forEach(function (card, n) {
+          var d = card.querySelector(".card__details");
+          if (d && openStates[n] && n === index) d.open = true;
+        });
+        slideToActive(false);
+      });
+    }
+
+    function show(i, animate) {
+      index = Math.max(0, Math.min(cards.length - 1, i));
+      closeInactiveDetails();
+      setCardStates();
       prev.disabled = index === 0;
       next.disabled = index === cards.length - 1;
       if (counter) counter.textContent = (index + 1) + " / " + cards.length;
-      requestAnimationFrame(updateNavAnchor);
+      requestAnimationFrame(function () { slideToActive(animate !== false); });
     }
-    prev.addEventListener("click", function () { show(index - 1); });
-    next.addEventListener("click", function () { show(index + 1); });
+
+    prev.addEventListener("click", function () { show(index - 1, true); });
+    next.addEventListener("click", function () { show(index + 1, true); });
 
     var startX = null;
-    box.addEventListener("touchstart", function (e) {
+    viewport.addEventListener("touchstart", function (e) {
       startX = e.touches && e.touches[0] ? e.touches[0].clientX : null;
     }, { passive: true });
-    box.addEventListener("touchend", function (e) {
+    viewport.addEventListener("touchend", function (e) {
       if (startX == null || !e.changedTouches || !e.changedTouches[0]) return;
       var dx = e.changedTouches[0].clientX - startX;
       startX = null;
-      if (Math.abs(dx) < 50) return;
-      if (dx < 0) show(index + 1); else show(index - 1);
+      if (Math.abs(dx) < 45) return;
+      if (dx < 0) show(index + 1, true); else show(index - 1, true);
     }, { passive: true });
 
-    window.addEventListener("resize", function () {
-      var d = activeCard() && activeCard().querySelector(".card__details");
-      if (!d || !d.open) requestAnimationFrame(updateNavAnchor);
+    cards.forEach(function (card) {
+      var img = card.querySelector("img");
+      if (img && !img.complete) img.addEventListener("load", measureCollapsedCardHeight, { once:true });
     });
-    show(0);
+
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        measureCollapsedCardHeight();
+        show(index, false);
+      }, 100);
+    });
+
+    show(0, false);
+    requestAnimationFrame(measureCollapsedCardHeight);
   }
 
   /* ---------- モバイル研究アコーディオン ---------- */
@@ -983,9 +1054,8 @@ window.SITE_DATA = {
         var top = t.el.getBoundingClientRect().top + window.pageYOffset;
         if (top <= y) chosen = t;
       });
-      if (atBottom) {
-        var contact = targets.filter(function (t) { return t.hash === "#contact"; })[0];
-        if (contact) chosen = contact;
+      if (atBottom && targets.length) {
+        chosen = targets[targets.length - 1];
       }
       if (chosen) setActive(chosen.hash, false);
     }
