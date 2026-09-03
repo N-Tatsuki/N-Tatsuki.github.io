@@ -9,7 +9,8 @@
   --navy-400:#4A7A84;   /* 補助的な青緑。日付や補足ラベル */
   --navy-050:#EAF2F3;   /* ごく薄い青緑。背景の面 */
 
-  --teal:#44A1A4;       /* パレットの明るい青緑。罫線や下線の差し色 */
+  --teal:#44A1A4;       /* パレットの明るい青緑。選択中のタブ・罫線・下線 */
+  --teal-ink:#12292D;   /* 青緑の面に載せる文字色（コントラスト比 5.0） */
   --accent:#FF9A00;     /* パレットの橙。面や線に使う鮮やかな差し色 */
   --brass:#A85F00;      /* 橙を文字用に濃くした色（小さな文字の可読性を確保） */
   --brass-soft:#FFD79A; /* 濃い背景の上で使う淡い橙 */
@@ -105,8 +106,8 @@ a{ color:var(--navy-700); }
   border-radius:4px;
   transition:background .2s, color .2s;
 }
-.rail__nav a:hover{ background:rgba(255,255,255,.10); color:#fff; }
-.rail__nav a.is-active{ color:var(--navy-900); background:var(--brass-soft); }
+.rail__nav a:hover{ background:rgba(68,161,164,.22); color:#fff; }
+.rail__nav a.is-active{ color:var(--teal-ink); background:var(--teal); font-weight:500; }
 
 .rail__foot{ display:none; }
 
@@ -164,7 +165,7 @@ a{ color:var(--navy-700); }
 .theme{
   margin-top:34px;
   padding-left:20px;
-  border-left:3px solid var(--accent);
+  border-left:3px solid var(--teal);
 }
 .theme__period{
   display:inline-block; margin-bottom:8px;
@@ -420,7 +421,7 @@ a{ color:var(--navy-700); }
     gap:1px;
     margin:2px 0 9px 12px;
     padding-left:8px;
-    border-left:1px solid rgba(255,255,255,.16);
+    border-left:1px solid rgba(68,161,164,.45);
   }
   .rail__nav-sub{
     padding:6px 9px !important;
@@ -432,7 +433,7 @@ a{ color:var(--navy-700); }
     color:#fff !important;
   }
   .rail__nav-sub.is-active{
-    color:var(--navy-900) !important;
+    color:var(--teal-ink) !important;
   }
   .cards{
     grid-template-columns:1fr;
@@ -463,7 +464,7 @@ a{ color:var(--navy-700); }
   margin:10px 0 4px;
   padding:14px 16px;
   background:var(--navy-050);
-  border-left:3px solid var(--teal);
+  border-left:3px solid rgba(68,161,164,.45);
   border-radius:3px;
 }
 .pub__abstract-label{
@@ -918,7 +919,7 @@ details.theme{
 .education-lang__btn:hover{ color:var(--navy-900); }
 .education-lang__btn.is-active{
   color:var(--navy-700);
-  border-bottom-color:var(--navy-700);
+  border-bottom-color:var(--teal);
   font-weight:700;
 }
 .education-lang__sep{
