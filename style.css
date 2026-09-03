@@ -2,23 +2,18 @@
    配色・寸法の設定。色を変えたいときはここだけ触れば全体に反映されます。
    ========================================================= */
 :root{
-  /* 基調色（パレット：#224248 / #325E6A / #44A1A4 / #FF9A00）
-     変数名は従来のままにしてあります。値だけを差し替えています。 */
-  --navy-900:#224248;   /* 最も濃い青緑。サイドバーの背景 */
-  --navy-700:#325E6A;   /* 基調色。見出しやリンク */
-  --navy-400:#4A7A84;   /* 補助的な青緑。日付や補足ラベル */
-  --navy-050:#EAF2F3;   /* ごく薄い青緑。背景の面 */
+  --navy-900:#0B1B33;   /* 最も濃い紺。サイドバーの背景 */
+  --navy-700:#14315C;   /* 基調の紺。見出しやリンク */
+  --navy-400:#4A6592;   /* 補助的な紺 */
+  --navy-050:#EDF1F8;   /* ごく薄い紺。背景の面 */
 
-  --teal:#44A1A4;       /* パレットの明るい青緑。選択中のタブ・罫線・下線 */
-  --teal-ink:#12292D;   /* 青緑の面に載せる文字色（コントラスト比 5.0） */
-  --accent:#FF9A00;     /* パレットの橙。面や線に使う鮮やかな差し色 */
-  --brass:#A85F00;      /* 橙を文字用に濃くした色（小さな文字の可読性を確保） */
-  --brass-soft:#FFD79A; /* 濃い背景の上で使う淡い橙 */
+  --brass:#B8873A;      /* 差し色。ろう材の金に由来 */
+  --brass-soft:#E9D9B8;
 
-  --ink:#1E3A40;        /* 本文の文字色 */
-  --ink-muted:#4E6B72;  /* 補足の文字色 */
-  --paper:#FCFEFE;      /* 全体の背景 */
-  --rule:#CFDEE0;       /* 罫線 */
+  --ink:#16233A;        /* 本文の文字色 */
+  --ink-muted:#4C5F7C;  /* 補足の文字色 */
+  --paper:#FCFDFE;      /* 全体の背景 */
+  --rule:#D2DAE7;       /* 罫線 */
 
   --rail-w:264px;
   --max-w:760px;
@@ -47,7 +42,7 @@ body{
 }
 
 a{ color:var(--navy-700); }
-:focus-visible{ outline:3px solid var(--accent); outline-offset:3px; }
+:focus-visible{ outline:3px solid var(--brass); outline-offset:3px; }
 
 .skip{
   position:absolute; left:-9999px;
@@ -86,7 +81,7 @@ a{ color:var(--navy-700); }
 }
 .rail__affil{
   margin:10px 0 0;
-  font-size:12.5px; line-height:1.7; color:#AFC8CC;
+  font-size:12.5px; line-height:1.7; color:#B9C6DC;
   white-space:pre-line;
 }
 
@@ -101,13 +96,13 @@ a{ color:var(--navy-700); }
 .rail__nav a{
   flex:0 0 auto;
   padding:8px 12px;
-  color:#CFE0E2; text-decoration:none;
+  color:#D6DFEE; text-decoration:none;
   font-size:13.5px; white-space:nowrap;
   border-radius:4px;
   transition:background .2s, color .2s;
 }
-.rail__nav a:hover{ background:rgba(68,161,164,.22); color:#fff; }
-.rail__nav a.is-active{ color:var(--teal-ink); background:var(--teal); font-weight:500; }
+.rail__nav a:hover{ background:rgba(255,255,255,.10); color:#fff; }
+.rail__nav a.is-active{ color:var(--navy-900); background:var(--brass-soft); }
 
 .rail__foot{ display:none; }
 
@@ -165,7 +160,7 @@ a{ color:var(--navy-700); }
 .theme{
   margin-top:34px;
   padding-left:20px;
-  border-left:3px solid var(--teal);
+  border-left:3px solid var(--brass);
 }
 .theme__period{
   display:inline-block; margin-bottom:8px;
@@ -246,7 +241,7 @@ a{ color:var(--navy-700); }
   display:flex; align-items:center; justify-content:center;
   color:var(--navy-400); font-size:12.5px; letter-spacing:.1em;
   background:repeating-linear-gradient(-45deg,
-    var(--navy-050) 0 10px, #DDEAEB 10px 20px);
+    var(--navy-050) 0 10px, #E4EAF4 10px 20px);
 }
 .card__body{ padding:20px 22px 22px; }
 .card__year{
@@ -267,10 +262,10 @@ a{ color:var(--navy-700); }
 .card__link{
   display:inline-block;
   font-size:13px; font-weight:500;
-  border-bottom:1px solid var(--teal);
+  border-bottom:1px solid var(--brass-soft);
   text-decoration:none;
 }
-.card__link:hover{ border-bottom-color:var(--accent); }
+.card__link:hover{ border-bottom-color:var(--brass); }
 
 /* =========================================================
    経歴
@@ -306,7 +301,7 @@ a{ color:var(--navy-700); }
   font-size:13.5px; text-decoration:none;
   transition:border-color .2s, background .2s;
 }
-.links a:hover{ border-color:var(--teal); background:var(--navy-050); }
+.links a:hover{ border-color:var(--navy-700); background:var(--navy-050); }
 .contact__mail{
   margin:24px 0 0;
   font-size:14px; color:var(--ink-muted);
@@ -339,7 +334,7 @@ a{ color:var(--navy-700); }
   .rail__foot{
     display:block;
     margin:auto 0 0; padding:24px 32px 0;
-    font-size:11px; letter-spacing:.1em; color:#63838A;
+    font-size:11px; letter-spacing:.1em; color:#7E8EA8;
   }
 
   .main{ padding:0 64px 140px; margin:0; max-width:calc(var(--max-w) + 128px); }
@@ -421,19 +416,19 @@ a{ color:var(--navy-700); }
     gap:1px;
     margin:2px 0 9px 12px;
     padding-left:8px;
-    border-left:1px solid rgba(68,161,164,.45);
+    border-left:1px solid rgba(255,255,255,.16);
   }
   .rail__nav-sub{
     padding:6px 9px !important;
     font-size:11.5px !important;
     line-height:1.45;
-    color:#A6C0C4 !important;
+    color:#AEBBD0 !important;
   }
   .rail__nav-sub:hover{
     color:#fff !important;
   }
   .rail__nav-sub.is-active{
-    color:var(--teal-ink) !important;
+    color:var(--navy-900) !important;
   }
   .cards{
     grid-template-columns:1fr;
@@ -464,7 +459,7 @@ a{ color:var(--navy-700); }
   margin:10px 0 4px;
   padding:14px 16px;
   background:var(--navy-050);
-  border-left:3px solid rgba(68,161,164,.45);
+  border-left:3px solid var(--brass);
   border-radius:3px;
 }
 .pub__abstract-label{
@@ -529,7 +524,7 @@ a{ color:var(--navy-700); }
 .pub__badge{
   display:inline-block;
   padding:2px 8px;
-  border:1px solid var(--teal);
+  border:1px solid var(--brass-soft);
   border-radius:999px;
   background:#fff;
   color:var(--navy-700);
@@ -665,7 +660,7 @@ details.theme{
     position:sticky;
     top:0;
     z-index:1000;
-    box-shadow:0 1px 0 rgba(255,255,255,.08), 0 4px 14px rgba(34,66,72,.12);
+    box-shadow:0 1px 0 rgba(255,255,255,.08), 0 4px 14px rgba(11,27,51,.12);
   }
   .rail__id{ display:none; }
   .rail__nav{
@@ -835,7 +830,7 @@ details.theme{
     font-size:10.5px;
     line-height:1.5;
     letter-spacing:.04em;
-    color:#63838A;
+    color:#7E8EA8;
   }
   .rail__foot{
     margin:auto 0 0;
@@ -919,7 +914,7 @@ details.theme{
 .education-lang__btn:hover{ color:var(--navy-900); }
 .education-lang__btn.is-active{
   color:var(--navy-700);
-  border-bottom-color:var(--teal);
+  border-bottom-color:var(--navy-700);
   font-weight:700;
 }
 .education-lang__sep{
@@ -1068,11 +1063,11 @@ details.theme{
 
 /* カードに奥行きをつける */
 .card{
-  box-shadow:0 7px 22px rgba(34,66,72,.11);
+  box-shadow:0 7px 22px rgba(11,27,51,.11);
   transition:box-shadow .2s ease;
 }
 .card:hover{
-  box-shadow:0 10px 28px rgba(34,66,72,.14);
+  box-shadow:0 10px 28px rgba(11,27,51,.14);
 }
 
 /* EDP と ASE-Lab の画像右側の区切り線だけを消す */
@@ -1184,15 +1179,6 @@ details.theme{
   white-space:pre-wrap;
 }
 
-/* 連絡先ブロックの下に添える一言 */
-.contact__note{
-  margin:12px 0 0;
-  font-size:14px;
-  line-height:1.8;
-  color:var(--navy-700);
-}
-.contact__note:empty{ display:none; }
-
 /* PC版は従来どおり縦並び。画像は常に上揃え。 */
 @media (min-width:768px){
   .project-viewport{ overflow:visible; }
@@ -1249,7 +1235,7 @@ details.theme{
   .project-carousel .card.is-carousel-active{
     opacity:1;
     pointer-events:auto;
-    box-shadow:0 10px 28px rgba(34,66,72,.16);
+    box-shadow:0 10px 28px rgba(11,27,51,.16);
   }
   .project-carousel .card.is-carousel-neighbor{
     opacity:.38;
@@ -1276,7 +1262,7 @@ details.theme{
     height:52px;
     border-radius:999px;
     background:rgba(252,253,254,.72);
-    box-shadow:0 2px 10px rgba(34,66,72,.08);
+    box-shadow:0 2px 10px rgba(11,27,51,.08);
     backdrop-filter:blur(3px);
     -webkit-backdrop-filter:blur(3px);
   }
