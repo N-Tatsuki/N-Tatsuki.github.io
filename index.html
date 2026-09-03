@@ -110,6 +110,7 @@
         <p class="contact__mail" data-bind="contactEmail"></p>
         <p class="contact__address" data-bind="contactAddress"></p>
       </div>
+      <p class="contact__note" data-bind="contactNote"></p>
     </section>
 
     <!-- ---- 外部リンク ---- -->
@@ -140,7 +141,8 @@ window.SITE_DATA = {
     affiliation: "東京科学大学 工学院 機械系\nエンジニアリングデザインコース 博士後期課程",
     lead: "研究業績や活動歴をまとめた個人HPです。",
     contactEmail: "nakatani.t.55c9［at］m.isct.ac.jp",
-    contactAddress: "〒152-8550 東京都目黒区大岡山2-12-1  石川台1号館"
+    contactAddress: "〒152-8550 東京都目黒区大岡山2-12-1  石川台1号館",
+    contactNote: "お仕事等ご連絡お待ちしています。"
   },
 
   /* ------------------------------------------------------------------
@@ -198,7 +200,7 @@ window.SITE_DATA = {
       year: 2026,
       title: "Brazing of carbon/carbon composite beams using gold filler with tungsten trioxide and tungsten carbide coatings",
       authors: "Tatsuki Nakatani, Takahisa Yamazaki",
-      venue: "Carbon, 121264（2026年1月） / Impact Factor 12.7（2026年8月30日時点）",
+      venue: "Carbon, 121264（2026年1月） / Q1 Journal",
       badges: ["主著", "査読あり"],
       abstract: "炭素繊維複合材料の表面をWC・WO₃で改質することで、Auろう材のぬれ性向上と過剰な浸透の抑制を実現しました。さらに、月面ドーム基地の梁材への応用を見据え、接合面に対する炭素繊維の配向角度を設定し、接合試験を行いました。",
       type: "journal",
@@ -544,6 +546,7 @@ window.SITE_DATA = {
       lead: P.lead,
       contactEmail: P.contactEmail,
       contactAddress: P.contactAddress,
+      contactNote: P.contactNote,
       year: new Date().getFullYear()
     };
     Object.keys(map).forEach(function (key) {
@@ -573,8 +576,9 @@ window.SITE_DATA = {
   var pubCounter = 0;
 
   function citationText(p) {
+    /* 引用文には掲載誌の評価（Q1 Journal など）を含めない */
     var venue = String(p.venue || p.program || "")
-      .replace(/\s*\/\s*Impact Factor.*$/i, "")
+      .replace(/\s*\/\s*(Impact Factor|Q\d\s*Journal).*$/i, "")
       .trim();
 
     /* 掲載情報の末尾にある出版年月を分離する */
