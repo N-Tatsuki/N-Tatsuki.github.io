@@ -1179,6 +1179,15 @@ details.theme{
   white-space:pre-wrap;
 }
 
+/* 連絡先ブロックの下に添える一言 */
+.contact__note{
+  margin:12px 0 0;
+  font-size:14px;
+  line-height:1.8;
+  color:var(--navy-700);
+}
+.contact__note:empty{ display:none; }
+
 /* PC版は従来どおり縦並び。画像は常に上揃え。 */
 @media (min-width:768px){
   .project-viewport{ overflow:visible; }
